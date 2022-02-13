@@ -34,7 +34,7 @@ Here are some ideas to get you started:
 
 - 🤝 I’m looking for help with **Competitive Programming** and **Cyber Security**
 
-- 📝 I regularly teaching on [Discord SERVER](https://discord.gg/Wj3keGKWus/)
+- 📝 I regularly teaching on <a href="https://discord.gg/Wj3keGKWus/">**Discord SERVER**</a>
 
 - 📫 How to reach me **shamsuzzaman15-4031@diu.edu.bd**
 
