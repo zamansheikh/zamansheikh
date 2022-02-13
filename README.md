@@ -35,7 +35,7 @@ Here are some ideas to get you started:
 - 🤝 I’m looking for help with **Competitive Programming** and **Cyber Security**
 
 - 📝 I regularly teaching on <a href="https://discord.gg/Wj3keGKWus/">**Discord SERVER**</a> (**Join For Free Class**)
--         **Please join us : We Always Active on Discord !**
+- **Please join us : We Always Active on Discord !**
 
 - 📫 How to reach me **shamsuzzaman15-4031@diu.edu.bd**
 
