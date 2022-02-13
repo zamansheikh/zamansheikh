@@ -22,7 +22,7 @@ Here are some ideas to get you started:
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=zamansheikh&label=Profile%20views&color=0e75b6&style=flat" alt="zamansheikh" /> </p>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=zamansheikh" alt="zamansheikh" /></a> </p>
+<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=zamansheikh_cse" alt="zamansheikh_cse" /></a> </p>
 
 <p align="left"> <a href="https://twitter.com/zamansheikh_cse" target="blank"><img src="https://img.shields.io/twitter/follow/zamansheikh?logo=twitter&style=for-the-badge" alt="zamansheikh" /></a> </p>
 
