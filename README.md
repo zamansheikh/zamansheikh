@@ -18,7 +18,7 @@ Here are some ideas to get you started:
 
 
 <h1 align="center">Hi 👋, I'm Md. Shamsuzzaman</h1>
-<h3 align="center">A passionate student interested in software engineering, IT and information security.</h3>
+<h3 align="center">A passionate student interested in Ethical Hacking, IT and Cyber security.</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=zamansheikh&label=Profile%20views&color=0e75b6&style=flat" alt="zamansheikh" /> </p>
 
@@ -26,7 +26,7 @@ Here are some ideas to get you started:
 
 <p align="left"> <a href="https://twitter.com/zamansheikh_cse" target="blank"><img src="https://img.shields.io/twitter/follow/zamansheikh?logo=twitter&style=for-the-badge" alt="zamansheikh" /></a> </p>
 
-- 🔭 I’m currently working as a **Musician** at <a href="https://zamansheikh.net/">**WPDeveloper**</a>
+- 🔭 I’m currently working as a **Musician** at <a href="https://open.spotify.com/artist/14sgZhCSrXPCYAeSCesdom">**Spotify**</a>
 
 - 🌱 I’m currently learning **Ethical Hacking**
 
