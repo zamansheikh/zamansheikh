@@ -23,18 +23,16 @@ Here are some ideas to get you started:
 <h1 align="center">Hi 👋, I'm Md. Shamsuzzaman</h1>
 <h3 align="center">A passionate student interested in Ethical Hacking, IT and Cyber security.</h3>
 
-<p align="center"> <img src="https://komarev.com/ghpvc/?username=zamansheikh&label=Profile%20views&color=0e75b6&style=flat" alt="zamansheikh" /> </p>
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=zamansheikh&label=Profile%20views&color=0e75b6&style=flat" alt="zamansheikh" /> </p>
 
-<p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=zamansheikh" alt="zamansheikh" /></a> </p>
+<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=zamansheikh" alt="zamansheikh" /></a> </p>
 
-<p align="center"> <a href="https://twitter.com/zamansheikh_cse" target="blank"><img src="https://img.shields.io/twitter/follow/zamansheikh_cse?logo=twitter&style=for-the-badge" alt="zamansheikh_cse" /></a> </p>
+<p align="left"> <a href="https://twitter.com/zamansheikh_cse" target="blank"><img src="https://img.shields.io/twitter/follow/zamansheikh_cse?logo=twitter&style=for-the-badge" alt="zamansheikh_cse" /></a> </p>
 
-<p align="center">
 	
 - 🔭 I’m currently working as a **Musician** at <a href="https://open.spotify.com/artist/14sgZhCSrXPCYAeSCesdom">**Spotify**</a>
 
 - 🌱 I’m currently learning **Ethical Hacking**
-	</p>
 
 - 👯 I’m looking to collaborate on **NULL**
 
