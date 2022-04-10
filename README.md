@@ -14,6 +14,9 @@ Here are some ideas to get you started:
 - 📫 How to reach me: ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
+
+- zamansheikh&theme=gruvbox" add for apply theme
+
 -->
 
 
@@ -58,11 +61,11 @@ Here are some ideas to get you started:
 <h3 align="center">Most Used Languages:</h3>
 
 <p align="center">
-	<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zamansheikh&hide=html,css,scss&layout=compact&langs_count=50&theme=gruvbox"/>
+	<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zamansheikh&hide=html,css,scss&layout=compact&langs_count=50"/>
 </p>
 <p align="center">
-	<img align="center" src="https://github-readme-stats.vercel.app/api?username=zamansheikh&theme=gruvbox"/>
+	<img align="center" src="https://github-readme-stats.vercel.app/api?username=zamansheikh"/>
 </p>
 <p align="center">
-	<img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=zamansheikh&theme=gruvbox"/>
+	<img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=zamansheikh"/>
 </p>
