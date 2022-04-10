@@ -64,3 +64,12 @@ Here are some ideas to get you started:
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=zamansheikh&" alt="zamansheikh" /></p>
 
 
+<p align="center">
+	<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zamansheikh&hide=html,css,scss&layout=compact&langs_count=50&theme=gruvbox"/>
+</p>
+<p align="center">
+	<img align="center" src="https://github-readme-stats.vercel.app/api?username=zamansheikh&theme=gruvbox"/>
+</p>
+<p align="center">
+	<img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=zamansheikh&theme=gruvbox"/>
+</p>
