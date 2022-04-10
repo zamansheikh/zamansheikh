@@ -57,13 +57,6 @@ Here are some ideas to get you started:
 
 <h3 align="center">Most Used Languages:</h3>
 
-<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=zamansheikh&show_icons=true&locale=en&layout=compact" alt="zamansheikh" /></p>
-
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=zamansheikh&show_icons=true&locale=en" alt="zamansheikh" /></p>
-
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=zamansheikh&" alt="zamansheikh" /></p>
-
-
 <p align="center">
 	<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zamansheikh&hide=html,css,scss&layout=compact&langs_count=50&theme=gruvbox"/>
 </p>
