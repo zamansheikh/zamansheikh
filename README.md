@@ -46,7 +46,7 @@
 <h3 align="left">Support:</h3>
 <p><a href="https://www.buymeacoffee.com/zamansheikh"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="zamansheikh" /></a><a href="https://ko-fi.com/zamansheikh"> <img align="left" src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" height="50" width="210" alt="zamansheikh" /></a></p><br><br>
 </br>
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=zamansheikh&show_icons=true&locale=en&layout=compact" alt="zamansheikh" /></p>
-<p><img align="left" src="https://github-readme-stats.vercel.app/api?username=zamansheikh&show_icons=true&locale=en" alt="zamansheikh" /></p>
-<p><img align="left" src="https://github-readme-streak-stats.herokuapp.com/?user=zamansheikh&" alt="zamansheikh" /></p>
-
+<h3 align="left">Performances:</h3>
+<p><img align="center" src="https://github-readme-stats.vercel.app/api?username=zamansheikh&show_icons=true&locale=en" alt="zamansheikh" /></p>
+<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=zamansheikh&" alt="zamansheikh" /></p>
+<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=zamansheikh&show_icons=true&locale=en&layout=compact" alt="zamansheikh" /></p>
