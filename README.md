@@ -1,11 +1,11 @@
 <h1 align="center">Hi 👋, I'm Md. Shamsuzzaman (Zaman Sheikh)</h1>
-<h3 align="center">A passionate flutter Developer & Dart Programmer from Bangladesh</h3>
+<h3 align="center">A dedicated Flutter Developer and skilled Dart Programmer hailing from Bangladesh.</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=zamansheikh&label=Profile%20views&color=0e75b6&style=flat" alt="zamansheikh" /> </p>
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=zamansheikh" alt="zamansheikh" /></a> </p>
 
-<p align="left"> <a href="https://twitter.com/zamansheikh" target="blank"><img src="https://img.shields.io/twitter/follow/zamansheikh?logo=twitter&style=for-the-badge" alt="zamansheikh" /></a> </p>
+<p align="left"> <a href="https://twitter.com/zamansheikh_cse" target="blank"><img src="https://img.shields.io/twitter/follow/zamansheikh?logo=twitter&style=for-the-badge" alt="zamansheikh" /></a> </p>
 
 - 🔭 I’m currently working on [Campus Saga](https://github.com/zamansheikh/Campus-Saga)
 
