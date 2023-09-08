@@ -13,17 +13,17 @@
 
 - 👯 I’m looking to collaborate on [Calcu](https://github.com/zamansheikh/Calcu)
 
-- 🤝 I’m currently tech on [Free] [**deCoders Family**](https://discord.gg/Wj3keGKWus)
+- 🤝 I’m currently teaching in [Free] [**deCoders Family**](https://discord.gg/Wj3keGKWus)
 
 - 👨‍💻 All of my projects are available at [zamansheikh.com](zamansheikh.com)
 
 - 💬 Ask me about **C , C++ , Dart & linux Bash**
 
-- 📫 How to reach me **shamsuzzaman15-4031@diu.edu.bd**
+- 📫 Contact me [**Click Here To Mail Me**](mailto:shamsuzzaman15-4031@diu.edu.bd)
 
 - 📄 Know about my experiences [**my_CV**](https://zamansheikh.com/wp-content/uploads/2022/09/Zaman-Sheikh-CV.png)
 
-- ⚡ Fun fact **Social Engineer, Creative, Mind Reader & Self Learner**
+- ⚡ Fun fact: **Social Engineer, Creative, Mind Reader & Self Learner**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
