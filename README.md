@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Md. Shamsuzzaman (Zaman Sheikh)</h1>
-<h3 align="center">A passionate flutter developer,Programmer from Bangladesh</h3>
+<h3 align="center">A passionate flutter developer, Programmer from Bangladesh</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=zamansheikh&label=Profile%20views&color=0e75b6&style=flat" alt="zamansheikh" /> </p>
 
@@ -13,7 +13,7 @@
 
 - 👯 I’m looking to collaborate on [Calcu](https://github.com/zamansheikh/Calcu)
 
-- 🤝 I’m currently tech on [Free] **deCoders Family**
+- 🤝 I’m currently tech on [Free] [deCoders Family](https://discord.gg/Wj3keGKWus)
 
 - 👨‍💻 All of my projects are available at [zamansheikh.com](zamansheikh.com)
 
@@ -46,7 +46,7 @@
 <h3 align="left">Support:</h3>
 <p><a href="https://www.buymeacoffee.com/zamansheikh"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="zamansheikh" /></a><a href="https://ko-fi.com/zamansheikh"> <img align="left" src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" height="50" width="210" alt="zamansheikh" /></a></p><br><br>
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=zamansheikh&show_icons=true&locale=en&layout=compact" alt="zamansheikh" /></p>
+<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=zamansheikh&show_icons=true&locale=en&layout=compact" alt="zamansheikh" /></p>
 
 <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=zamansheikh&show_icons=true&locale=en" alt="zamansheikh" /></p>
 
