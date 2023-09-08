@@ -19,7 +19,7 @@
 
 - 💬 Ask me about **C , C++ , Dart & linux Bash**
 
-- 📫 Contact me ->[**G-Mail**](mailto:shamsuzzaman15-4031@diu.edu.bd)
+- 📫 Contact me - [**G-Mail**](mailto:shamsuzzaman15-4031@diu.edu.bd)
 
 - 📄 Know about my experiences [**my_CV**](https://zamansheikh.com/wp-content/uploads/2022/09/Zaman-Sheikh-CV.png)
 
