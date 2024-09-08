@@ -21,7 +21,7 @@
 
 - 📫 Contact me - [**G-Mail**](mailto:shamsuzzaman15-4031@diu.edu.bd)
 
-- 📄 Know about my experiences [**my_CV**](https://zamansheikh.com/wp-content/uploads/2022/09/Zaman-Sheikh-CV.png)
+- 📄 Know about my experiences [**my_CV**](https://drive.google.com/file/d/1DinLVQwv9IaWZTronmb2dz7UUyBiNSa-/view?usp=drivesdk)
 
 - ⚡ Fun fact: **Social Engineer, Creative, Mind Reader & Self Learner**
 
