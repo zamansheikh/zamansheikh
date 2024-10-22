@@ -1,6 +1,6 @@
 
-<h1 align="center">Hi 👋, I'm Md. Shamsuzzaman (Zaman Sheikh)</h1>
-<h3 align="center">A dedicated Flutter Developer and skilled Dart Programmer hailing from Bangladesh.</h3>
+<h1 align="left">Hi 👋, I'm Md. Shamsuzzaman (Zaman Sheikh)</h1>
+<h3 align="left">A dedicated Flutter Developer and skilled Dart Programmer hailing from Bangladesh.</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=zamansheikh&label=Profile%20views&color=0e75b6&style=flat" alt="zamansheikh" /> </p>
 
