@@ -6,7 +6,7 @@
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=zamansheikh" alt="zamansheikh" /></a> </p>
 
-<p align="left"> <a href="https://twitter.com/zamansheikh_cse" target="blank"><img src="https://img.shields.io/twitter/follow/zamansheikh_cse?logo=twitter&style=for-the-badge" alt="zamansheikh_cse" /></a> </p>
+<p align="left"> <a href="https://twitter.com/zamansheikh_404" target="blank"><img src="https://img.shields.io/twitter/follow/zamansheikh_404?logo=twitter&style=for-the-badge" alt="zamansheikh_404" /></a> </p>
 
 - 🔭 I’m currently working on [Campus Saga](https://github.com/zamansheikh/Campus-Saga)
 
