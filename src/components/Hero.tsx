@@ -3,10 +3,10 @@ import { FileDown, ChevronDown } from 'lucide-react';
 
 const Hero: React.FC = () => {
   // Determine the CV path based on the environment
-  // const cvPath = import.meta.env.MODE === 'github' 
-  //   ? "/zamansheikh/Zaman_CV.pdf" 
-  //   : "/Zaman_CV.pdf";
-  const cvPath = "https://github.com/zamansheikh/zamansheikh/blob/main/Zaman_CV.pdf";
+  const cvPath = import.meta.env.MODE === 'github' 
+    ? "/zamansheikh/Zaman_CV.pdf" 
+    : "/Zaman_CV.pdf";
+  // const cvPath = "https://github.com/zamansheikh/zamansheikh/blob/main/Zaman_CV.pdf";
 
   return (
     <section id="home" className="min-h-screen flex flex-col items-center justify-center relative px-4 pt-16">

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:github": "vite build --mode github",
-    "build:netlify": "vite build --mode netlify",
+    "build:github": "vite build --mode github && cpy Zaman_CV.pdf CNAME docs/ --parents",
+    "build:netlify": "vite build --mode netlify && cpy Zaman_CV.pdf CNAME docs/ --parents",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -21,6 +21,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
+    "cpy-cli": "^5.0.0",
     "eslint": "^9.9.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
