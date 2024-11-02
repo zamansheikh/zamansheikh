@@ -5,6 +5,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: "/zamansheikh/",
   plugins: [react()],
+  build: {
+    outDir: 'docs', // Specify the output directory here
+  },
 });
 
 
