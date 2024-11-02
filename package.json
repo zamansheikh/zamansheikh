@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:github": "vite build --mode github && cpy Zaman_CV.pdf CNAME docs/ --parents",
-    "build:netlify": "vite build --mode netlify && cpy Zaman_CV.pdf CNAME dist/ --parents",
+    "build:github": "vite build --mode github && cpy zaman_cv.pdf CNAME docs/ --parents",
+    "build:netlify": "vite build --mode netlify && cpy zaman_cv.pdf CNAME dist/ --parents",
     "lint": "eslint .",
     "preview": "vite preview"
   },
