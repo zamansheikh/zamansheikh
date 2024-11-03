@@ -3,8 +3,8 @@ import { FileDown, ChevronDown } from 'lucide-react';
 
 const Hero: React.FC = () => {
   // Determine the CV path based on the environment
-  const cvPath = import.meta.env.MODE === 'github' 
-    ? "/zamansheikh/zaman_cv.pdf" 
+  const cvPath = import.meta.env.MODE === 'github'
+    ? "/zamansheikh/zaman_cv.pdf"
     : "/zaman_cv.pdf";
   // const cvPath = "https://github.com/zamansheikh/zamansheikh/blob/main/Zaman_CV.pdf";
 
@@ -21,14 +21,14 @@ const Hero: React.FC = () => {
           Passionate about creating innovative mobile solutions with Flutter
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a 
-            href="#projects" 
+          <a
+            href="#projects"
             className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity text-center"
           >
             View My Projects
           </a>
-          <a 
-            href={cvPath} 
+          <a
+            href={cvPath}
             className="w-full sm:w-auto border border-white/20 px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-colors inline-flex items-center justify-center"
           >
             Download Resume

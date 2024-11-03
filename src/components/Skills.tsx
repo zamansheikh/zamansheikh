@@ -14,9 +14,9 @@ const Skills = () => {
         "Provider Pattern",
         "REST API Integration",
         "Local Storage (Hive/SQLite)",
-        "Push Notifications(Learning)",
-        "Google Maps Integration(Learning)",
-        "Social Auth(Intermidiate)"
+        "Push Notifications",
+        "Google Maps Integration",
+        "Social Auth"
       ]
     },
     {
@@ -32,7 +32,8 @@ const Skills = () => {
         "VS Code",
         "Android Studio",
         "Firebase Console",
-        "Play Console"
+        "Play Console",
+        "CI/CD"
       ]
     },
     {
@@ -41,7 +42,8 @@ const Skills = () => {
       skills: [
         "Entry-level knowledge",
         "Security best practices",
-        "Secure Storage"
+        "Secure Storage",
+        "API Security"
       ]
     },
     {

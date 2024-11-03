@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
-
+  
   body {
     @apply antialiased;
   }

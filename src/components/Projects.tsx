@@ -6,8 +6,8 @@ const Projects = () => {
     {
       title: "Campus Saga",
       description: "A comprehensive campus management application built with Flutter and Firebase, featuring real-time updates and offline support.",
-      image: "https://repository-images.githubusercontent.com/683700586/c9588022-3742-4dcc-ae7a-5e0765a9a33b",
-      tags: ["Flutter", "Firebase", "BLoC", "Clean Architecture"],
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800",
+      tags: ["Flutter", "Firebase", "BLoC", "GetX"],
       github: "https://github.com/zamansheikh/campus-saga"
     },
     {
@@ -15,14 +15,14 @@ const Projects = () => {
       description: "Scientific calculator app available on Play Store with advanced mathematical functions and a beautiful Material You design.",
       image: "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&q=80&w=800",
       tags: ["Flutter", "Provider", "Material Design"],
-      playStore: "https://play.google.com/store/apps/details?id=com.decodersfamily.calcu"
+      playStore: "https://play.google.com/store/apps/details?id=com.zamansheikh.calcu"
     },
     {
       title: "Number Trivia",
       description: "Android app using BLoC pattern for state management and clean architecture principles.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
       tags: ["Flutter", "BLoC", "Clean Architecture"],
-      github: "https://github.com/zamansheikh/number_trivia_clean_arch_tdd_bloc_restAPI"
+      github: "https://github.com/zamansheikh/number-trivia"
     }
   ];
 

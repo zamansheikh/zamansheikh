@@ -3,7 +3,7 @@ import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navItems = ['Home', 'About', 'Projects', 'Skills', 'Education', 'Contact'];
+  const navItems = ['Home', 'About', 'Projects', 'Experience', 'Skills', 'Education', 'Contact'];
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
