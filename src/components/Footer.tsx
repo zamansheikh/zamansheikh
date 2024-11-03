@@ -5,8 +5,8 @@ const Footer = () => {
   const socialLinks = [
     { icon: <Github size={20} />, url: 'https://github.com/zamansheikh', label: 'GitHub' },
     { icon: <Linkedin size={20} />, url: 'https://linkedin.com/in/zamansheikh', label: 'LinkedIn' },
-    { icon: <Twitter size={20} />, url: 'https://twitter.com/zamansheikh', label: 'Twitter' },
-    { icon: <Instagram size={20} />, url: 'https://instagram.com/zamansheikh', label: 'Instagram' },
+    { icon: <Twitter size={20} />, url: 'https://twitter.com/zamansheikh_error', label: 'Twitter' },
+    { icon: <Instagram size={20} />, url: 'https://instagram.com/zamansheikh_error', label: 'Instagram' },
     { icon: <Mail size={20} />, url: 'mailto:shamsuzzaman15-4031@diu.edu.bd', label: 'Email' }
   ];
 

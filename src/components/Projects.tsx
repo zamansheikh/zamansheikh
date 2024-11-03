@@ -6,22 +6,22 @@ const Projects = () => {
     {
       title: "Campus Saga",
       description: "A comprehensive campus management application built with Flutter and Firebase, featuring real-time updates and offline support.",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800",
-      tags: ["Flutter", "Firebase", "BLoC", "GetX"],
+      image: "https://repository-images.githubusercontent.com/683700586/c9588022-3742-4dcc-ae7a-5e0765a9a33b",
+      tags: ["Flutter", "Firebase", "BLoC", "GetX(Prev)"],
       github: "https://github.com/zamansheikh/campus-saga"
     },
     {
       title: "Calcu",
       description: "Scientific calculator app available on Play Store with advanced mathematical functions and a beautiful Material You design.",
-      image: "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&q=80&w=800",
-      tags: ["Flutter", "Provider", "Material Design"],
+      image: "https://repository-images.githubusercontent.com/680168202/a16ee3c0-aec3-4be4-a785-7534c117947b",
+      tags: ["Flutter", "Provider", "Material Design", "SharedPreferences"],
       playStore: "https://play.google.com/store/apps/details?id=com.zamansheikh.calcu"
     },
     {
       title: "Number Trivia",
       description: "Android app using BLoC pattern for state management and clean architecture principles.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-      tags: ["Flutter", "BLoC", "Clean Architecture"],
+      image: "https://repository-images.githubusercontent.com/844388623/c815e67a-ed79-4b71-aa56-ccf94d2b6c1a",
+      tags: ["Flutter", "BLoC", "Clean Architecture, TDD"],
       github: "https://github.com/zamansheikh/number-trivia"
     }
   ];
