@@ -22,7 +22,7 @@
 
 - 📫 Contact me - [**G-Mail**](mailto:shamsuzzaman15-4031@diu.edu.bd)
 
-- 📄 Know about my experiences [**my_CV**](https://drive.google.com/file/d/1yfwb2_iTwHnWHoJyITV2FBDObaHKzzda/view?usp=sharing)
+- 📄 Know about my experiences [**View CV**](./zaman_cv.pdf)
 
 - ⚡ Fun fact: **Social Engineer, Creative, Mind Reader & Self Learner**
 
