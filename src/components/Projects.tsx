@@ -21,7 +21,7 @@ const Projects = () => {
       title: "Number Trivia",
       description: "Android app using BLoC pattern for state management and clean architecture principles.",
       image: "https://repository-images.githubusercontent.com/844388623/c815e67a-ed79-4b71-aa56-ccf94d2b6c1a",
-      tags: ["Flutter", "BLoC", "Clean Architecture, TDD"],
+      tags: ["Flutter", "BLoC", "Clean Architecture", "TDD"],
       github: "https://github.com/zamansheikh/number_trivia_clean_arch_tdd_bloc_restAPI"
     }
   ];
