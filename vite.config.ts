@@ -23,9 +23,18 @@ export default defineConfig(({ command, mode }) => {
   } else if (mode === 'netlify') {
     outDir = 'dist';
   }
+  //this is for github without custom domain
+  // return {
+  //   base: mode === 'github' ? '/zamansheikh/' : '/',
+  //   plugins: [react()],
+  //   build: {
+  //     outDir, // Use the determined output directory
+  //   },
+  // };
 
+  //this is for github with custom domain
   return {
-    base: mode === 'github' ? '/zamansheikh/' : '/',
+    base: mode === 'github' ? '/' : '/',
     plugins: [react()],
     build: {
       outDir, // Use the determined output directory
