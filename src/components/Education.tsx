@@ -8,7 +8,7 @@ const Education = () => {
       institution: "Daffodil International University",
       period: "Expected Graduation: 2024",
       grade: "CGPA: 3.64 (9 out of 10 semesters)",
-      achievements: ["Cyber Security Club", "Result based waiver"]
+      achievements: ["Cyber Security Club", "Result Based Waiver"]
     },
     {
       degree: "Higher Secondary Certificate (HSC)",
