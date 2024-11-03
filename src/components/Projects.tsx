@@ -15,14 +15,14 @@ const Projects = () => {
       description: "Scientific calculator app available on Play Store with advanced mathematical functions and a beautiful Material You design.",
       image: "https://repository-images.githubusercontent.com/680168202/a16ee3c0-aec3-4be4-a785-7534c117947b",
       tags: ["Flutter", "Provider", "Material Design", "SharedPreferences"],
-      playStore: "https://play.google.com/store/apps/details?id=com.zamansheikh.calcu"
+      playStore: "https://play.google.com/store/apps/details?id=com.decodersfamily.calcu"
     },
     {
       title: "Number Trivia",
       description: "Android app using BLoC pattern for state management and clean architecture principles.",
       image: "https://repository-images.githubusercontent.com/844388623/c815e67a-ed79-4b71-aa56-ccf94d2b6c1a",
       tags: ["Flutter", "BLoC", "Clean Architecture, TDD"],
-      github: "https://github.com/zamansheikh/number-trivia"
+      github: "https://github.com/zamansheikh/number_trivia_clean_arch_tdd_bloc_restAPI"
     }
   ];
 
