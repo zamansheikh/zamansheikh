@@ -16,7 +16,7 @@
 
 - 🤝 I’m currently teaching in [Free] [**deCoders Family**](https://discord.gg/Wj3keGKWus)
 
-- 👨‍💻 All of my projects are available at [zamansheikh.com](zamansheikh.com)
+- 👨‍💻 All of my projects are available at [zamansheikh.com](https://zamansheikh.com)
 
 - 💬 Ask me about **C , C++ , Dart & linux Bash**
 
