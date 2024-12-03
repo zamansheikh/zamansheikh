@@ -4,6 +4,7 @@ import { Project } from './types';
 import { StatusBadge } from './StatusBadge';
 import { TechStack } from './TechStack';
 import { ProjectLinks } from './ProjectLinks';
+import { ProjectGallery } from './ProjectGallery';
 
 interface ProjectSlideProps {
   project: Project;
@@ -16,9 +17,9 @@ export const ProjectSlide: React.FC<ProjectSlideProps> = ({ project }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-slate-800/30 rounded-xl overflow-hidden"
+        className="bg-slate-800/30 rounded-xl overflow-hidden shadow-xl"
       >
-        <div className="relative h-64">
+        <div className="relative h-72 sm:h-96">
           <img
             src={project.thumbnail}
             alt={project.title}
@@ -27,52 +28,74 @@ export const ProjectSlide: React.FC<ProjectSlideProps> = ({ project }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <StatusBadge status={project.status} />
-            <h2 className="text-3xl font-bold mt-2">{project.title}</h2>
+            <h2 className="text-4xl font-bold mt-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              {project.title}
+            </h2>
           </div>
         </div>
 
-        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-6">
+        <div className="p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="space-y-8">
             <div>
-              <h3 className="text-xl font-semibold mb-2 text-cyan-400">Overview</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Overview</h3>
               <p className="text-gray-300 leading-relaxed">{project.description}</p>
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mb-2 text-cyan-400">Key Features</h3>
-              <ul className="grid gap-2">
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Key Features</h3>
+              <ul className="grid gap-3">
                 {project.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2">
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start gap-2"
+                  >
                     <span className="mt-1.5 w-1.5 h-1.5 bg-cyan-400 rounded-full" />
                     <span className="text-gray-300">{feature}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
 
             <TechStack technologies={project.technologies} />
+            
+            <ProjectGallery items={project.gallery} />
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div>
-              <h3 className="text-xl font-semibold mb-2 text-cyan-400">Challenges</h3>
-              <ul className="space-y-3">
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Challenges & Solutions</h3>
+              <ul className="space-y-4">
                 {project.challenges.map((challenge, index) => (
-                  <li key={index} className="text-gray-300 pl-4 border-l-2 border-cyan-400">
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="text-gray-300 pl-4 border-l-2 border-cyan-400"
+                  >
                     {challenge}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mb-2 text-cyan-400">Achievements</h3>
-              <ul className="space-y-2">
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-400">Achievements</h3>
+              <ul className="space-y-3">
                 {project.achievements.map((achievement, index) => (
-                  <li key={index} className="flex items-start gap-2">
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start gap-2"
+                  >
                     <span className="mt-1.5 w-1.5 h-1.5 bg-cyan-400 rounded-full" />
                     <span className="text-gray-300">{achievement}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
