@@ -12,10 +12,10 @@ const Skills = () => {
         "Clean Architecture (BLoC)",
         "GetX State Management",
         "Provider Pattern",
-        "REST API Integration(Intermediate)",
+        "REST API Integration",
         "Local Storage (Hive/SQLite)",
-        "Push Notifications(Learning)",
-        "Google Maps Integration(Learning)",
+        "Push Notifications",
+        "Google Maps Integration",
         "Social Auth"
       ]
     },
@@ -33,6 +33,7 @@ const Skills = () => {
         "Android Studio",
         "Firebase Console",
         "Play Console",
+        "CI/CD"
       ]
     },
     {
@@ -41,7 +42,8 @@ const Skills = () => {
       skills: [
         "Entry-level knowledge",
         "Security best practices",
-        "Linux basics",
+        "Secure Storage",
+        "API Security"
       ]
     },
     {

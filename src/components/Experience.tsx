@@ -5,8 +5,8 @@ const Experience = () => {
   const experiences = [
     {
       title: "Flutter Developer Intern",
-      company: "Acro Nation",
-      period: "Nov 2024 - Present",
+      company: "TechForing Ltd.",
+      period: "June 2023 - Present",
       location: "Dhaka, Bangladesh",
       description: [
         "Developed and maintained multiple Flutter applications with clean architecture",
@@ -16,15 +16,15 @@ const Experience = () => {
       ]
     },
     {
-      title: "Team Lead",
-      company: "deCoders Family",
-      period: "Jan 2023 - Present",
+      title: "Freelance Mobile Developer",
+      company: "Self-employed",
+      period: "Jan 2022 - May 2023",
       location: "Remote",
       description: [
-        "Led a team of developers to build mobile applications using Flutter",
-        "Managed project timelines and deliverables",
-        "Provided technical guidance and code reviews",
-        "Final Year University Project: Campus Saga"
+        "Built custom mobile applications for various clients",
+        "Managed entire development lifecycle from planning to deployment",
+        "Implemented payment gateway integrations",
+        "Maintained high client satisfaction and repeat business"
       ]
     }
   ];

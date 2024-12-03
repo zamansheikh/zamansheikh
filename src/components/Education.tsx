@@ -8,21 +8,21 @@ const Education = () => {
       institution: "Daffodil International University",
       period: "Expected Graduation: 2024",
       grade: "CGPA: 3.64 (9 out of 10 semesters)",
-      achievements: ["Cyber Security Club", "Result Based Waiver"]
+      achievements: ["Dean's List", "Merit-based Scholarship"]
     },
     {
       degree: "Higher Secondary Certificate (HSC)",
       institution: "Cantonment Public School and College",
       period: "2019",
       grade: "GPA: 4.08",
-      achievements: ["Computer Club"]
+      achievements: ["Science Club President"]
     },
     {
       degree: "Secondary School Certificate (SSC)",
       institution: "Kandania High School",
       period: "2017",
       grade: "GPA: 5.00",
-      achievements: ["Science Club"]
+      achievements: ["Board Merit List"]
     }
   ];
 
