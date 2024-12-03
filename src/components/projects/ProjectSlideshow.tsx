@@ -16,18 +16,18 @@ export const ProjectSlideshow: React.FC<ProjectSlideshowProps> = ({ projects }) 
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (direction: number) => ({
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   const swipeConfidenceThreshold = 10000;
@@ -53,7 +53,7 @@ export const ProjectSlideshow: React.FC<ProjectSlideshowProps> = ({ projects }) 
             exit="exit"
             transition={{
               x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
+              opacity: { duration: 0.2 },
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -73,7 +73,6 @@ export const ProjectSlideshow: React.FC<ProjectSlideshowProps> = ({ projects }) 
         </AnimatePresence>
       </div>
 
-      {/* Navigation Controls */}
       <button
         className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-800/50 text-white hover:bg-slate-800 transition-colors z-10"
         onClick={() => paginate(-1)}
@@ -87,7 +86,6 @@ export const ProjectSlideshow: React.FC<ProjectSlideshowProps> = ({ projects }) 
         <ChevronRight size={24} />
       </button>
 
-      {/* Project Navigator */}
       <ProjectNavigator
         projects={projects}
         currentIndex={currentIndex}
