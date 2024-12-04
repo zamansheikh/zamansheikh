@@ -1,129 +1,72 @@
 import React from 'react';
-import { ExternalLink, Github, Calendar, Users, Download, ShoppingCart, Clock } from 'lucide-react';
-import { ProjectStatus } from './types';
+import { motion } from 'framer-motion';
+import { Project } from './types';
 import { StatusBadge } from './StatusBadge';
-import { TechStack } from './TechStack';
-import { ProjectLinks } from './ProjectLinks';
-import { ProjectGallery } from './ProjectGallery';
+import { Calendar, Users, ArrowRight } from 'lucide-react';
 
 interface ProjectCardProps {
-  project: {
-    title: string;
-    thumbnail: string;
-    description: string;
-    role: string;
-    technologies: string[];
-    startDate: string;
-    endDate?: string;
-    status: ProjectStatus;
-    demoUrl?: string;
-    githubUrl?: string;
-    downloadUrl?: string;
-    purchaseUrl?: string;
-    features: string[];
-    gallery: Array<{ type: 'image' | 'video'; url: string; caption: string }>;
-    challenges: string[];
-    teamSize?: number;
-    achievements: string[];
-  };
+  project: Project;
+  onClick: () => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
   return (
-    <article className="bg-slate-800/30 rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all duration-300">
-      {/* Hero Section */}
-      <div className="relative h-64 overflow-hidden">
-        <img 
-          src={project.thumbnail} 
+    <motion.article
+      whileHover={{ y: -5 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={onClick}
+      className="bg-slate-800/30 rounded-xl overflow-hidden cursor-pointer group"
+    >
+      <div className="relative aspect-[16/9]">
+        <img
+          src={project.thumbnail}
           alt={project.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <StatusBadge status={project.status} />
-          <h3 className="text-2xl font-bold mt-2">{project.title}</h3>
+          <h3 className="text-2xl font-bold mt-2 group-hover:text-cyan-400 transition-colors">
+            {project.title}
+          </h3>
         </div>
       </div>
 
-      <div className="p-6 space-y-6">
-        {/* Project Overview */}
-        <div>
-          <h4 className="text-lg font-semibold mb-2 text-cyan-400">Overview</h4>
-          <p className="text-gray-300 leading-relaxed">{project.description}</p>
+      <div className="p-6 space-y-4">
+        <p className="text-gray-300 line-clamp-2">{project.description}</p>
+
+        <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+          <div className="flex items-center gap-2">
+            <Users className="text-cyan-400" size={16} />
+            <span>{project.role}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Calendar className="text-cyan-400" size={16} />
+            <span>{project.startDate} - {project.endDate || 'Present'}</span>
+          </div>
         </div>
 
-        {/* Role & Timeline */}
-        <div className="flex flex-wrap gap-4">
-          <div className="flex items-center gap-2">
-            <Users className="text-cyan-400" size={18} />
-            <span className="text-gray-300">Role: {project.role}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Calendar className="text-cyan-400" size={18} />
-            <span className="text-gray-300">
-              {project.startDate} - {project.endDate || 'Present'}
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.slice(0, 4).map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 bg-slate-700/50 rounded-full text-sm text-gray-300"
+            >
+              {tech}
             </span>
-          </div>
-          {project.teamSize && (
-            <div className="flex items-center gap-2">
-              <Users className="text-cyan-400" size={18} />
-              <span className="text-gray-300">Team Size: {project.teamSize}</span>
-            </div>
+          ))}
+          {project.technologies.length > 4 && (
+            <span className="px-3 py-1 bg-slate-700/50 rounded-full text-sm text-gray-300">
+              +{project.technologies.length - 4} more
+            </span>
           )}
         </div>
 
-        {/* Tech Stack */}
-        <TechStack technologies={project.technologies} />
-
-        {/* Features */}
-        <div>
-          <h4 className="text-lg font-semibold mb-2 text-cyan-400">Key Features</h4>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {project.features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="mt-1.5 w-1.5 h-1.5 bg-cyan-400 rounded-full" />
-                <span className="text-gray-300">{feature}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="pt-4 flex items-center text-cyan-400 group/link">
+          <span className="text-sm font-medium">View Details</span>
+          <ArrowRight size={16} className="ml-2 transform group-hover/link:translate-x-1 transition-transform" />
         </div>
-
-        {/* Gallery */}
-        <ProjectGallery items={project.gallery} />
-
-        {/* Challenges & Solutions */}
-        <div>
-          <h4 className="text-lg font-semibold mb-2 text-cyan-400">Challenges & Solutions</h4>
-          <ul className="space-y-3">
-            {project.challenges.map((challenge, index) => (
-              <li key={index} className="text-gray-300 pl-4 border-l-2 border-cyan-400">
-                {challenge}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Achievements */}
-        <div>
-          <h4 className="text-lg font-semibold mb-2 text-cyan-400">Achievements</h4>
-          <ul className="space-y-2">
-            {project.achievements.map((achievement, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="mt-1.5 w-1.5 h-1.5 bg-cyan-400 rounded-full" />
-                <span className="text-gray-300">{achievement}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Action Links */}
-        <ProjectLinks
-          demoUrl={project.demoUrl}
-          githubUrl={project.githubUrl}
-          downloadUrl={project.downloadUrl}
-          purchaseUrl={project.purchaseUrl}
-        />
       </div>
-    </article>
+    </motion.article>
   );
 };
