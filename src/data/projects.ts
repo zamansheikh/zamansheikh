@@ -95,7 +95,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        type: "image" ,
+        type: "image",
         url: "https://github.com/zamansheikh/Calcu/blob/main/assets/screenshots/4.png?raw=true?auto=format&fit=crop&q=80&w=1200",
         caption: "Calculator Interface",
       },
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     technologies: ["Node.js", "Simple-Git", "Moment.js", "Random.js", "JSON File"],
     startDate: "Dec 2023",
     endDate: "Jan 2024",
-    status: "completed" ,
+    status: "completed",
     githubUrl: "https://github.com/zamansheikh/GitTimeChanger",
     features: [
       "Automates GitHub contributions with ease.",
@@ -149,7 +149,7 @@ export const projects: Project[] = [
   },
   {
     id: "NumberTrivia",
-    title: "number_trivia_clean_arch_tdd_bloc_restAPI",
+    title: "Number trivia - Find interesting facts about numbers",
     thumbnail: "https://repository-images.githubusercontent.com/844388623/c815e67a-ed79-4b71-aa56-ccf94d2b6c1a",
     description:
       "Number Trivia is a simple Flutter application that displays trivia about numbers. The app uses the clean architecture pattern, TDD, BLoC for state management, and a REST API for fetching trivia data.",
@@ -170,7 +170,7 @@ export const projects: Project[] = [
       {
         type: "image",
         url: "https://repository-images.githubusercontent.com/844388623/c815e67a-ed79-4b71-aa56-ccf94d2b6c1a",
-        caption: "GitTimeChanger Hack in Action",
+        caption: "Number trivia - Home Screen",
       },
     ],
     challenges: [
