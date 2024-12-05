@@ -149,7 +149,7 @@ export const projects: Project[] = [
   },
   {
     id: "NumberTrivia",
-    title: "Number trivia - Find interesting facts about numbers",
+    title: "Number trivia",
     thumbnail: "https://repository-images.githubusercontent.com/844388623/c815e67a-ed79-4b71-aa56-ccf94d2b6c1a",
     description:
       "Number Trivia is a simple Flutter application that displays trivia about numbers. The app uses the clean architecture pattern, TDD, BLoC for state management, and a REST API for fetching trivia data.",
@@ -184,4 +184,80 @@ export const projects: Project[] = [
       "Recognized for clean architecture and TDD practices.",
     ],
   },
+  {
+    id: "Khola Chithi",
+    title: "Khola Chithi",
+    thumbnail: "https://i.ytimg.com/vi/Sc3s6nm1vxg/maxresdefault.jpg",
+    description:
+      "Khola Chithi is an app, where you can write letters to your loved ones. You can write letters to your friends, family, and loved ones. You can also read letters from others. You can also share your letters with others.",
+    role: "Solo Developer",
+    technologies: ["Flutter", "BLoC", "Clean Architecture", "REST API", "Dio", "Equatable"],
+    startDate: "Dec 2023",
+    endDate: "Jan 2024",
+    status: "completed",
+    githubUrl: "https://github.com/zamansheikh/khola_chithi",
+    downloadUrl: "https://github.com/zamansheikh/khola_chithi/releases/latest",
+    features: [
+      "Khola Chithi is an app, where you can write letters to your loved ones.",
+      "You can write letters to your friends, family, and loved ones.",
+      "You can also read letters from others.",
+      "You can also share your letters with others.",
+      "User can also like and comment on letters.",
+    ],
+    gallery: [
+      {
+        type: "image",
+        url: "https://i.ytimg.com/vi/Sc3s6nm1vxg/maxresdefault.jpg",
+        caption: "Khola Chithi - Home Screen",
+      },
+    ],
+    challenges: [
+      "Ensuring compliance with GitHub's API and policies.",
+      "Implementing cross-platform compatibility.",
+      "Optimizing performance for large repositories.",
+    ],
+    teamSize: 1,
+    achievements: [
+      "Appreciated for the idea of writing letters to loved ones.",
+    ],
+  },
+  {
+    id: "Ultrasonic Distance Meter with Arduino",
+    title: "Ultrasonic Distance Meter with Arduino",
+    thumbnail: "https://raw.githubusercontent.com/zamansheikh/7SegmentDisplayWithArduino/main/7%20Seg%20Display.png",
+    description: "This Arduino program uses an ultrasonic sensor to measure distances and displays the results on a 7-segment LED display. The system calculates distance values in meters and rounds them for easy visualization.",
+    role: "Solo Developer",
+    technologies: ["Arduino", "Ultrasonic Sensor", "7-Segment Display"],
+    startDate: "May 2023",
+    endDate: "May 2023",
+    status: "completed",
+    githubUrl: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/",
+    downloadUrl: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/7%20Seg%20Display.pdf",
+    features: [
+      "Measures distance using an HC-SR04 ultrasonic sensor.",
+      "Displays the rounded distance on a 7-segment display in real-time."
+    ],
+    gallery: [
+      {
+        type: "image",
+        url: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/Screenshot_11.png?raw=true",
+        caption: "Project Setup",
+      },
+      {
+        type: "image",
+        url: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/Screenshot_12.png?raw=true",
+        caption: "Code Implementation",
+      },
+    ],
+    challenges: [
+      "Understanding the working principles of the ultrasonic sensor.",
+      "Calibrating the sensor to ensure accurate and consistent distance measurements."
+    ],
+    teamSize: 1,
+    achievements: [
+      "Gained practical knowledge of Arduino programming and interfacing hardware components.",
+      "Developed a fully functional real-time distance measurement and display system."
+    ]
+  }
+
 ];
