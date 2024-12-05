@@ -233,6 +233,7 @@ export const projects: Project[] = [
     status: "completed",
     githubUrl: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/",
     downloadUrl: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/7%20Seg%20Display.pdf",
+    demoUrl: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/7seg_preview.gif",
     features: [
       "Measures distance using an HC-SR04 ultrasonic sensor.",
       "Displays the rounded distance on a 7-segment display in real-time."
@@ -242,11 +243,6 @@ export const projects: Project[] = [
         type: "image",
         url: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/Screenshot_11.png?raw=true",
         caption: "Project Setup",
-      },
-      {
-        type: "image",
-        url: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/7seg_preview.gif",
-        caption: "Project Demo",
       },
     ],
     challenges: [
