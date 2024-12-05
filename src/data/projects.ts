@@ -11,8 +11,8 @@ export const projects: Project[] = [
     role: "Lead Developer",
     technologies: ["Flutter", "Firebase", "BLoC", "Cloud Functions", "FCM", "Material Design", "SharedPreferences", "Local Notifications"],
     startDate: "Jan 2023",
-    endDate: "Dec 2023",
-    status: "completed",
+    endDate: "On-going",
+    status: "ongoing",
     downloadUrl: "https://github.com/zamansheikh/campus_saga/releases/latest",
     githubUrl: "https://github.com/zamansheikh/campus-saga",
     features: [
@@ -193,8 +193,8 @@ export const projects: Project[] = [
     role: "Solo Developer",
     technologies: ["Flutter", "BLoC", "Clean Architecture", "REST API", "Dio", "Equatable"],
     startDate: "Dec 2023",
-    endDate: "Jan 2024",
-    status: "completed",
+    endDate: "ongoing",
+    status: "ongoing",
     githubUrl: "https://github.com/zamansheikh/khola_chithi",
     downloadUrl: "https://github.com/zamansheikh/khola_chithi/releases/latest",
     features: [
@@ -222,7 +222,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "Ultrasonic Distance Meter with Arduino",
+    id: "7SegmentDisplayWithArduino",
     title: "Ultrasonic Distance Meter with Arduino",
     thumbnail: "https://raw.githubusercontent.com/zamansheikh/7SegmentDisplayWithArduino/main/7%20Seg%20Display.png",
     description: "This Arduino program uses an ultrasonic sensor to measure distances and displays the results on a 7-segment LED display. The system calculates distance values in meters and rounds them for easy visualization.",
@@ -245,8 +245,8 @@ export const projects: Project[] = [
       },
       {
         type: "image",
-        url: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/Screenshot_12.png?raw=true",
-        caption: "Code Implementation",
+        url: "https://github.com/zamansheikh/7SegmentDisplayWithArduino/blob/main/7seg_preview.gif",
+        caption: "Project Demo",
       },
     ],
     challenges: [
@@ -258,6 +258,39 @@ export const projects: Project[] = [
       "Gained practical knowledge of Arduino programming and interfacing hardware components.",
       "Developed a fully functional real-time distance measurement and display system."
     ]
+  },
+  {
+    id: "Boi Chokro",
+    title: "Boi Chokro",
+    thumbnail: "https://github.com/zamansheikh/boi_chokro/blob/main/assets/play_store_feature_graphic.png?raw=true",
+    description: "Boi Chokro is a book exchange platform where users can exchange books with others. Users can also donate books to the platform. The app also has a feature to search for books.",
+    role: "Solo Developer",
+    technologies: ["Flutter", "Firebase", "BloC", "Map", "Hive", "Material Design"],
+    startDate: "Nov 2024",
+    endDate: "Ongoing",
+    status: "ongoing",
+    features: [
+      "User registration and authentication.",
+      "User can exchange books with others.",
+      "User can donate books to the platform.",
+      "User can search for books.",
+      "User can see the location of the book.",
+      "User can see the details of the book.",
+      "User can see the reviews of the book.",
+    ],
+    gallery: [
+      {
+        type: "image",
+        url: "https://github.com/zamansheikh/boi_chokro/blob/main/assets/play_store_feature_graphic.png?raw=true",
+        caption: "Project Setup",
+      },
+    ],
+    challenges: [
+      "Understanding the working principles of Map.",
+    ],
+    teamSize: 1,
+    achievements: [
+      "Gained practical knowledge of Flutter programming and interfacing hardware components.",
+    ]
   }
-
 ];
