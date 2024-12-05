@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
         <div className="relative inline-block group">
           <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-cyan-400/20 hover:border-cyan-400/40 transition-colors duration-300 mx-auto shadow-lg shadow-cyan-500/10">
             <img
-              src="https://github.com/zamansheikh/zamansheikh/blob/main/hero_dp.jpg?auto=format&fit=crop&q=80&w=400"
+              src="https://github.com/zamansheikh/zamansheikh/blob/main/hero_dp.jpg?raw=true?auto=format&fit=crop&q=80&w=400"
               alt="Zaman Sheikh - Flutter Developer"
               className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
             />
