@@ -36,23 +36,13 @@ export const projects: Project[] = [
       },
       {
         type: "image",
-        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/2.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
-        caption: "Promotions",
-      },
-      {
-        type: "image",
-        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/3.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
-        caption: "Post",
-      },
-      {
-        type: "image",
         url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/4.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
-        caption: "Rankings",
+        caption: "Issue Manipulation",
       },
       {
         type: "image",
         url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/5.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
-        caption: "Profile",
+        caption: "Admin Panel",
       },
     ],
     challenges: [
@@ -73,7 +63,7 @@ export const projects: Project[] = [
     thumbnail:
       "https://repository-images.githubusercontent.com/680168202/a16ee3c0-aec3-4be4-a785-7534c117947b?auto=format&fit=crop&q=80&w=1200",
     description:
-      "A modern scientific calculator app with advanced mathematical functions and a beautiful Material You design. Features include complex calculations, unit conversions, and history tracking.",
+      "A modern calculator app a beautiful Material You design. Features include Dark and Light theme and history tracking.",
     role: "Solo Developer",
     technologies: ["Flutter", "Provider", "Hive", "Material Design"],
     startDate: "Aug 2023",
@@ -83,7 +73,6 @@ export const projects: Project[] = [
     features: [
       "History tracking",
       "Dark and Light themes",
-      "Expression evaluation",
       "Offline support",
       "Result Saving",
     ],
@@ -96,7 +85,6 @@ export const projects: Project[] = [
     ],
     challenges: [
       "Implementing precise decimal calculations",
-      "Creating an intuitive user interface for complex operations",
       "Optimizing memory usage for calculation history",
     ],
     achievements: [
