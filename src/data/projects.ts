@@ -79,8 +79,13 @@ export const projects: Project[] = [
     gallery: [
       {
         type: "image",
-        url: "https://github.com/zamansheikh/Calcu/blob/main/assets/screenshots/4.png?raw=true?auto=format&fit=crop&q=80&w=1200",
-        caption: "Calculator Interface",
+        url: "https://github.com/zamansheikh/Calcu/blob/main/assets/mockup/1.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
+        caption: "Calculator Dark Theme",
+      },
+      {
+        type: "image",
+        url: "https://github.com/zamansheikh/Calcu/blob/main/assets/mockup/2.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
+        caption: "Calculator Light Theme",
       },
     ],
     challenges: [
