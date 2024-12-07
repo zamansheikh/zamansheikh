@@ -31,35 +31,29 @@ export const projects: Project[] = [
     gallery: [
       {
         type: "image",
-        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/screenshots/1.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
+        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/1.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
         caption: "Home Screen",
       },
       {
         type: "image",
-        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/screenshots/2.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
+        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/2.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
         caption: "Promotions",
       },
       {
         type: "image",
-        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/screenshots/3.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
+        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/3.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
         caption: "Post",
       },
       {
         type: "image",
-        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/screenshots/4.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
+        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/4.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
         caption: "Rankings",
       },
       {
         type: "image",
-        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/screenshots/5.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
+        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/mockup/5.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
         caption: "Profile",
       },
-      {
-        type: "image",
-        url: "https://github.com/zamansheikh/campus_saga/blob/main/assets/screenshots/6.jpg?raw=true?auto=format&fit=crop&q=80&w=1200",
-        caption: "Voting System",
-      },
-
     ],
     challenges: [
       "Implementing efficient offline data synchronization while maintaining data consistency",
