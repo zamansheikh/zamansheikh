@@ -7,7 +7,7 @@ const Experience = () => {
       title: "Trainee Flutter Developer",
       company: "BdCalling It LTD",
       period: "Jan 2025 - Present",
-      location: "Rampura Banashree, Dhaka, Bangladesh",
+      location: "Banashree, Rampura, Dhaka, Bangladesh",
       description: [
         "Developed and maintained multiple Flutter applications with GetX state management",
         "Implemented complex UI designs and animations",
@@ -19,7 +19,7 @@ const Experience = () => {
       title: "Flutter Developer Intern",
       company: "Acro Nation",
       period: "Nov 2024 - Jan 2025",
-      location: "Dhaka, Bangladesh",
+      location: "Remote",
       description: [
         "Developed and maintained multiple Flutter applications with clean architecture",
         "Implemented complex UI designs and animations",
