@@ -4,9 +4,21 @@ import { Briefcase, Calendar, ArrowRight } from 'lucide-react';
 const Experience = () => {
   const experiences = [
     {
+      title: "Trainee Flutter Developer",
+      company: "BdCalling It LTD",
+      period: "Jan 2025 - Present",
+      location: "Rampura Banashree, Dhaka, Bangladesh",
+      description: [
+        "Developed and maintained multiple Flutter applications with GetX state management",
+        "Implemented complex UI designs and animations",
+        "Integrated REST APIs and Firebase services",
+        "Collaborated with the design team to improve UX"
+      ]
+    },
+    {
       title: "Flutter Developer Intern",
       company: "Acro Nation",
-      period: "Nov 2024 - Present",
+      period: "Nov 2024 - Jan 2025",
       location: "Dhaka, Bangladesh",
       description: [
         "Developed and maintained multiple Flutter applications with clean architecture",
