@@ -143,14 +143,6 @@
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=zamansheikh&bg_color=20232a&color=61dafb&line=61dafb&point=ffffff&area=true&hide_border=true" width="100%"/>
 
-### 🎯 GitHub Metrics
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/zamansheikh/zamansheikh/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/zamansheikh/zamansheikh/output/github-contribution-grid-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/zamansheikh/zamansheikh/output/github-contribution-grid-snake.svg">
-</picture>
-
 </div>
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=6,11,20&height=2&section=header"/>
@@ -159,10 +151,20 @@
 
 <div align="center">
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=zamansheikh&theme=algolia&no-frame=true&no-bg=false&margin-w=4&column=8&rank=SECRET,SSS,SS,S,AAA,AA,A,B,C)](https://github.com/ryo-ma/github-profile-trophy)
+### 🏆 GitHub Trophy Collection
 
-### 🎖️ GitHub Achievements
-<img src="https://github-profile-trophy.vercel.app/?username=zamansheikh&theme=discord&no-frame=true&no-bg=true&margin-w=4&column=3&rank=SECRET,SSS,SS" />
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github-profile-trophy.vercel.app/?username=zamansheikh&theme=algolia&no-frame=true&no-bg=false&margin-w=4&column=4&rank=SECRET,SSS,SS,S" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github-profile-trophy.vercel.app/?username=zamansheikh&theme=discord&no-frame=true&no-bg=false&margin-w=4&column=4&rank=AAA,AA,A,B" />
+    </td>
+  </tr>
+</table>
 
 </div>
 
@@ -194,10 +196,37 @@
 </table>
 
 ### 💝 Your support helps me:
-- 🔧 Build more open-source projects
-- 📚 Create educational content
-- ☕ Stay caffeinated while coding
-- 🚀 Contribute to the Flutter community
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center" style="padding: 20px;">
+      <img src="https://img.shields.io/badge/🔧-Build%20Open%20Source%20Projects-blue?style=for-the-badge&labelColor=000000" alt="Open Source"/>
+      <br><br>
+      <sub>Creating innovative tools and libraries for the Flutter community</sub>
+    </td>
+    <td align="center" style="padding: 20px;">
+      <img src="https://img.shields.io/badge/📚-Create%20Educational%20Content-green?style=for-the-badge&labelColor=000000" alt="Education"/>
+      <br><br>
+      <sub>Tutorials, courses, and learning resources for developers</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 20px;">
+      <img src="https://img.shields.io/badge/☕-Stay%20Caffeinated%20While%20Coding-orange?style=for-the-badge&labelColor=000000" alt="Coffee"/>
+      <br><br>
+      <sub>Fuel for those late-night coding sessions and bug fixes</sub>
+    </td>
+    <td align="center" style="padding: 20px;">
+      <img src="https://img.shields.io/badge/🚀-Contribute%20to%20Flutter%20Community-purple?style=for-the-badge&labelColor=000000" alt="Community"/>
+      <br><br>
+      <sub>Building tools and helping developers grow in Flutter ecosystem</sub>
+    </td>
+  </tr>
+</table>
+
+</div>
 
 </div>
 
