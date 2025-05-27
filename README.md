@@ -90,7 +90,7 @@
 <div align="center">
 
 ### 📱 Mobile Development Mastery
-<img src="https://skillicons.dev/icons?i=flutter,dart,android,kotlin,firebase" />
+<img src="https://skillicons.dev/icons?i=flutter,dart,swift,kotlin,firebase" />
 
 ### 💻 Programming Languages
 <img src="https://skillicons.dev/icons?i=c,cpp,java,python,html,css,js" />
