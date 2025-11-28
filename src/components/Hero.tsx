@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
     },
     {
       icon: <Linkedin size={20} />,
-      href: "https://www.linkedin.com/in/md-shamsuzzaman/",
+      href: "https://www.linkedin.com/in/zamansheikh/",
       label: "LinkedIn",
       color: "hover:text-blue-400"
     },

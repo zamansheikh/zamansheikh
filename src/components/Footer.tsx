@@ -18,7 +18,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: <Github size={20} />, url: 'https://github.com/zamansheikh', label: 'GitHub', color: 'hover:text-white' },
-    { icon: <Linkedin size={20} />, url: 'https://www.linkedin.com/in/md-shamsuzzaman/', label: 'LinkedIn', color: 'hover:text-blue-400' },
+    { icon: <Linkedin size={20} />, url: 'https://www.linkedin.com/in/zamansheikh/', label: 'LinkedIn', color: 'hover:text-blue-400' },
     { icon: <Facebook size={20} />, url: 'https://facebook.com/zamansheikh.404', label: 'Facebook', color: 'hover:text-blue-500' },
     { icon: <Twitter size={20} />, url: 'https://x.com/zamansheikh_404', label: 'Twitter', color: 'hover:text-sky-400' },
     { icon: <Instagram size={20} />, url: 'https://instagram.com/zamansheikh_error', label: 'Instagram', color: 'hover:text-pink-400' },
