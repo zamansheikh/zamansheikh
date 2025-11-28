@@ -8,10 +8,14 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { ParticleBackground } from './components/ParticleBackground';
+import { ScrollProgress } from './components/ScrollProgress';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-white relative">
+      <ParticleBackground />
+      <ScrollProgress />
       <Header />
       <Hero />
       <About />
