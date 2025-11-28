@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
             {/* Image container */}
             <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-cyan-400/30 group-hover:border-cyan-400/60 transition-all duration-500 shadow-2xl">
               <img
-                src="https://github.com/zamansheikh/zamansheikh/blob/main/hero_dp.jpg?raw=true"
+                src="https://github.com/zamansheikh/zamansheikh/blob/main/public/hero_dp.jpg?raw=true"
                 alt="Zaman Sheikh - Flutter Developer"
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
               />
