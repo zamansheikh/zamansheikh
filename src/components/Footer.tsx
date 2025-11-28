@@ -22,7 +22,7 @@ const Footer = () => {
     { icon: <Facebook size={20} />, url: 'https://facebook.com/zamansheikh.404', label: 'Facebook', color: 'hover:text-blue-500' },
     { icon: <Twitter size={20} />, url: 'https://x.com/zamansheikh_404', label: 'Twitter', color: 'hover:text-sky-400' },
     { icon: <Instagram size={20} />, url: 'https://instagram.com/zamansheikh_error', label: 'Instagram', color: 'hover:text-pink-400' },
-    { icon: <Mail size={20} />, url: 'mailto:zamansheikh.dev@gmail.com', label: 'Email', color: 'hover:text-cyan-400' }
+    { icon: <Mail size={20} />, url: 'mailto:zaman6545@gmail.com', label: 'Email', color: 'hover:text-cyan-400' }
   ];
 
   const navItems = ['Home', 'About', 'Projects', 'Experience', 'Skills', 'Education', 'Contact'];

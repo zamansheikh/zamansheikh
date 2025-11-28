@@ -24,5 +24,9 @@ export interface Project {
   gallery: GalleryItem[];
   challenges: string[];
   teamSize?: number;
+  links?: {
+    live?: string;
+    [key: string]: string | undefined;
+  };
   achievements: string[];
 }

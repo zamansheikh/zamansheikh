@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
     },
     {
       icon: <Mail size={20} />,
-      href: "mailto:zamansheikh.dev@gmail.com",
+      href: "mailto:zaman6545@gmail.com",
       label: "Email",
       color: "hover:text-cyan-400"
     }
