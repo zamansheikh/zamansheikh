@@ -1,7 +1,135 @@
 import { Project } from '../components/projects/types';
 
 export const projects: Project[] = [
-  //Add this two project here, 
+  {
+    id: 'nu-result',
+    title: "NU Result: NU CGPA & Marksheet",
+    thumbnail: "https://play-lh.googleusercontent.com/3PEZHZBuvAqtnyxaJsrLazMlZ41x0vAuG3E32iVkLl1UrDeKTrdEmf2eetfuTP8SWzbdmaaJ0XqYwgDSV_5GIQ=w240-h480-rw",
+    description: "The Ultimate Academic Companion for National University Students. NU Result is a comprehensive, modern application specifically designed for National University (Bangladesh) students to effortlessly calculate CGPA and generate professional academic marksheets.",
+    role: "Lead Developer",
+    technologies: ["Flutter", "Firebase", "BLoC", "Material Design 3", "PDF Generation", "Charts", "SharedPreferences"],
+    startDate: "2024",
+    endDate: "2025",
+    status: "completed",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.decodersfamily.nu_result",
+    features: [
+      "Advanced CGPA Calculator with real-time SGPA and CGPA calculations",
+      "Support for multiple semesters with flexible credit systems (1-6 credits)",
+      "Complete grading scale from A+ to F with accurate grade point calculations",
+      "Data persistence - academic data saved securely on device",
+      "Professional Marksheet Generator - generate university-standard academic transcripts in PDF format",
+      "Visual SGPA trend charts showing semester-wise performance",
+      "Credit distribution analysis with interactive bar charts",
+      "Performance tracking with highest/lowest SGPA monitoring",
+      "Material Design 3 Implementation with beautiful gradient color schemes",
+      "Responsive design optimized for all Android screen sizes"
+    ],
+    gallery: [
+      {
+        type: "image",
+        url: "https://play-lh.googleusercontent.com/R2Lpt_1NUlo8OlAJtVyM7fz-VyBG8xEG14rcgzYr5k9AwveDchXrjCGu7FoUo89MEIbw6dUVQjAsjZ2bW-gDlA=w416-h235-rw",
+        caption: "CGPA Calculator Interface",
+      },
+    ],
+    challenges: [
+      "Implementing accurate CGPA calculations for NU grading scale",
+      "Designing professional PDF marksheet generation",
+      "Creating intuitive UI for complex academic calculations",
+    ],
+    teamSize: 1,
+    achievements: [
+      "Successfully deployed to Google Play Store",
+      "Helping thousands of NU students with accurate CGPA calculations",
+      "Professional marksheet generation for academic records",
+    ],
+  },
+  {
+    id: 'plotcalc',
+    title: "PlotCalc",
+    thumbnail: "https://play-lh.googleusercontent.com/_A8rca2p7_5xcoSCrImTWQwMG2NMChyP2rDGycokuQEpXd1w6pkZTqF1JIAMjce4UMqLys3jnS54rMSadzJz=w240-h480-rw",
+    description: "PlotCalc is a comprehensive land and property calculation application designed to help users quickly calculate plot areas, dimensions, and property-related metrics with precision and ease.",
+    role: "Lead Developer",
+    technologies: ["Flutter", "Provider", "Material Design 3", "LocalStorage", "Calculations Engine"],
+    startDate: "2025",
+    endDate: "2025",
+    status: "completed",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.programmernexus.plotcalc",
+    features: [
+      "Quick plot area calculations",
+      "Property dimension measurements",
+      "Real-time calculation results",
+      "Multiple unit support (sqft, sqm, katha, bigha, etc.)",
+      "Calculation history tracking",
+      "Material Design 3 interface",
+      "Offline support for all calculations",
+      "User-friendly input forms",
+      "Result sharing and export functionality",
+    ],
+    gallery: [
+      {
+        type: "image",
+        url: "https://play-lh.googleusercontent.com/SD_AUWLw9B-mez1hTCjxa-L2re9hT-c4XImTjs8a2b4qQuvIoKTMk888p1Vjy8xuuOCtU-EEUFbIJRRfVOYB=w416-h235-rw",
+        caption: "PlotCalc Calculator Interface",
+      },
+    ],
+    challenges: [
+      "Implementing accurate property calculation algorithms",
+      "Supporting multiple land measurement units",
+      "Creating intuitive UI for property calculations",
+    ],
+    teamSize: 1,
+    achievements: [
+      "Successfully deployed to Google Play Store",
+      "Helping property professionals with quick calculations",
+      "Positive user feedback for accuracy and usability",
+    ],
+  },
+  {
+    id: 'bowlersnetwork',
+    title: "BowlersNetwork",
+    thumbnail: "https://play-lh.googleusercontent.com/-UlPoXtAed-gXFoByawfl_ZULjjz9pJ5_5hPe9sm4qNo9_C1SfkxFGcKsrTEVdsE4zpd9_-bwmBRXiwnWKq76g=w240-h480-rw",
+    description: "BowlersNetwork is a comprehensive platform connecting bowling enthusiasts worldwide. Available as both web and mobile app, it enables users to connect, compete, and share their passion for bowling.",
+    role: "Lead Developer",
+    technologies: ["Flutter", "React", "Node.js", "Firebase", "BLoC", "REST API", "Material Design 3"],
+    startDate: "2025",
+    endDate: "Pre-launch",
+    status: "ongoing",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.bowlersnetwork.bowlersnetworkapp",
+    links: {
+      live: "https://www.bowlersnetwork.com/"
+    },
+    features: [
+      "User profiles and authentication",
+      "Connect with other bowling enthusiasts",
+      "Competition tracking and scoring",
+      "Bowling statistics and analytics",
+      "Event management and registration",
+      "Social feed and community interaction",
+      "In-app messaging and notifications",
+      "Responsive web and mobile experience",
+      "Real-time score updates",
+      "Player rankings and leaderboards"
+    ],
+    gallery: [
+      {
+        type: "image",
+        url: "https://play-lh.googleusercontent.com/XVpstHa1JWLgWqTyp-QQZy3Q__DXuYuHPy3iLkfiGHRHM-_hMeWHgrPC0rpQKnw1ErM6oum5xSo9i1Zs063zdQ=w416-h235-rw",
+        caption: "BowlersNetwork App Interface",
+      },
+    ],
+    challenges: [
+      "Building cross-platform web and mobile experience",
+      "Implementing real-time score tracking",
+      "Managing large-scale user community",
+      "Ensuring seamless synchronization between web and mobile",
+    ],
+    teamSize: 2,
+    achievements: [
+      "Successfully developed cross-platform solution",
+      "Pre-launched with community feedback integration",
+      "Comprehensive bowling community platform",
+    ],
+  },
   {
     id: 'lifeque',
     title: "LifeQue",
@@ -22,9 +150,9 @@ export const projects: Project[] = [
       "SharedPreferences",
       "Local Notifications"
     ],
-    startDate: "Jan 2023",
-    endDate: "On-going",
-    status: "ongoing",
+    startDate: "Jan 2025",
+    endDate: "2025",
+    status: "completed",
     downloadUrl: "https://play.google.com/store/apps/details?id=com.programmernexus.lifeque",
     githubUrl: "https://github.com/zamansheikh/lifeque",
     features: [
