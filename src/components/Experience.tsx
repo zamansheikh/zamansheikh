@@ -5,6 +5,20 @@ import { Timeline, TimelineItem } from './Timeline';
 const Experience = () => {
   const experiences: TimelineItem[] = [
     {
+      title: "Flutter Developer & Next.js Developer",
+      subtitle: "BowlersNetwork Inc.",
+      period: "May 2025 - Current",
+      description: "(REMOTE) 4064 Intrepid Cir Bismarck, ND 58504-8851 United States",
+      icon: <Briefcase size={16} />,
+      achievements: [
+        "Developed and maintained multiple Flutter applications with GetX state management",
+        "Implemented complex UI designs and animations",
+        "Integrated REST APIs and Firebase services",
+        "Collaborated with cross-functional teams to define, design, and ship new features",
+        "Worked on Next.js projects for web applications, ensuring seamless integration with Flutter apps"
+      ]
+    },
+    {
       title: "Flutter Developer & Team Lead",
       subtitle: "Join Venture AI",
       period: "Jan 2025 - Jul 2025",
@@ -31,7 +45,7 @@ const Experience = () => {
       ]
     },
     {
-      title: "Team Lead",
+      title: "Team Leader & Flutter Developer",
       subtitle: "deCoders Family",
       period: "Jan 2023 - Present",
       description: "Remote",

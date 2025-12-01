@@ -1,6 +1,65 @@
 import { Project } from '../components/projects/types';
 
 export const projects: Project[] = [
+  //Add this two project here, 
+  {
+    id: 'lifeque',
+    title: "LifeQue",
+    thumbnail:
+      "https://play-lh.googleusercontent.com/lg29460iZJcchkQ76z8w0cxlAlZ1U0w2I4AwHLdPIQAjMVAoHpSdJSErl9BXs5cIoaCM5OfjpgcI6wdxMLURwA=w240-h480-rw",
+    description:
+      "LifeQue is a Flutter app built with Clean Architecture, BLoC pattern, GoRouter, and dependency injection. It is your complete companion for Islamic practices, productivity, and task management, offering advanced features for the modern Muslim lifestyle.",
+    role: "Lead Developer",
+    technologies: [
+      "Flutter",
+      "Firebase",
+      "BLoC",
+      "GoRouter",
+      "Dependency Injection",
+      "Cloud Functions",
+      "FCM",
+      "Material Design",
+      "SharedPreferences",
+      "Local Notifications"
+    ],
+    startDate: "Jan 2023",
+    endDate: "On-going",
+    status: "ongoing",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.programmernexus.lifeque",
+    githubUrl: "https://github.com/zamansheikh/lifeque",
+    features: [
+      "Accurate prayer times with GPS location support.",
+      "Interactive Qibla direction compass with rotating N,E,S,W markings.",
+      "Smart prayer alarms with before prayer end and fixed time modes.",
+      "Educational info about Makruh (discouraged) prayer times.",
+      "Automatic and manual location detection.",
+      "Support for multiple Islamic calculation methods.",
+      "Study timer with Pomodoro technique, customizable sessions, and audio alerts.",
+      "Full-featured task management with timeline, progress tracking, and status categories.",
+      "System-level notifications for prayer, study sessions, and tasks.",
+      "Persistent and guided notification permission management."
+    ],
+    gallery: [
+     
+      {
+        type: "image",
+        url: "https://play-lh.googleusercontent.com/rxvx91hAHd64i3WAUasuGIF3xItqQiCD1jw8N-Y8pElPN3z6JRCiu5D1nU6kwdSF1hgNXPTG9u35EM4uNifabw=w416-h235-rw",
+        caption: "Banner Image",
+      },
+    ],
+    challenges: [
+      "Implementing accurate prayer time calculations for various locations.",
+      "Integrating advanced notification and alarm systems.",
+      "Designing a seamless user experience for productivity and Islamic features.",
+      "Ensuring secure user authentication and data privacy.",
+    ],
+    teamSize: 2,
+    achievements: [
+      "Successfully deployed to Google Play Store with positive user feedback.",
+      "Achieved over 500 downloads within the first three months of launch.",
+      "Maintained a 4.5+ star rating with consistent updates and feature enhancements.",
+    ],
+  },
   {
     id: 'campus-saga',
     title: "Campus Saga",

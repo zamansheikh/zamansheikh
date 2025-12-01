@@ -5,10 +5,10 @@ import { StatsCard } from './StatsCard';
 
 const About = () => {
   const stats = [
-    { value: 2, label: "Years Experience", suffix: "+", icon: <Rocket size={24} /> },
-    { value: 15, label: "Projects Completed", suffix: "+", icon: <Code2 size={24} /> },
-    { value: 10, label: "Technologies", suffix: "+", icon: <Award size={24} /> },
-    { value: 5, label: "Happy Clients", suffix: "+", icon: <Users size={24} /> },
+    { value: 3, label: "Years Experience", suffix: "+", icon: <Rocket size={24} /> },
+    { value: 19, label: "Projects Completed", suffix: "+", icon: <Code2 size={24} /> },
+    { value: 11, label: "Technologies", suffix: "+", icon: <Award size={24} /> },
+    { value: 9, label: "Happy Clients", suffix: "+", icon: <Users size={24} /> },
   ];
 
   const techStack = [
