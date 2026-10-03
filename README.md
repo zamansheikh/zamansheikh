@@ -45,7 +45,7 @@ More of what I've shipped with Silifton: **[silifton.com/portfolio](https://sili
 
 ## Tech
 
-<p>
+<p align="center">
   <img src="https://skillicons.dev/icons?i=flutter,dart,kotlin,swift,ts,js,nextjs,react&perline=8" alt="Flutter, Dart, Kotlin, Swift, TypeScript, JavaScript, Next.js, React"><br>
   <img src="https://skillicons.dev/icons?i=nestjs,nodejs,firebase,postgres,mongodb,redis,docker,nginx&perline=8" alt="NestJS, Node.js, Firebase, PostgreSQL, MongoDB, Redis, Docker, nginx"><br>
   <img src="https://skillicons.dev/icons?i=linux,git,githubactions,figma,cpp,python&perline=8" alt="Linux, Git, GitHub Actions, Figma, C++, Python">
@@ -53,16 +53,14 @@ More of what I've shipped with Silifton: **[silifton.com/portfolio](https://sili
 
 ## GitHub activity
 
-<p>
+<p align="center">
   <img src="https://github-readme-stats-salesp07.vercel.app/api?username=zamansheikh&count_private=true&show_icons=true&hide_border=true&disable_animations=true&bg_color=0b0e17&title_color=4f8bff&icon_color=8a6bff&text_color=c4ccd6&rank_icon=github" alt="GitHub stats">
-</p>
-<p>
   <img src="https://github-readme-streak-stats-salesp07.vercel.app/?user=zamansheikh&hide_border=true&background=0B0E17&ring=4F8BFF&fire=8A6BFF&currStreakLabel=4F8BFF&sideLabels=C4CCD6&currStreakNum=F2F5F8&sideNums=F2F5F8&dates=8B95A3&stroke=1F2A36&disable_animations=true" alt="GitHub streak">
 </p>
 
 ## Competitive programming
 
-<p>
+<p align="center">
   <a href="https://leetcode.com/zamansheikh"><img src="https://img.shields.io/badge/LeetCode-0b0e17?style=for-the-badge&logo=leetcode&logoColor=ffa116" alt="LeetCode"></a>
   <a href="https://www.hackerrank.com/zamansheikh"><img src="https://img.shields.io/badge/HackerRank-0b0e17?style=for-the-badge&logo=hackerrank&logoColor=2ec866" alt="HackerRank"></a>
   <a href="https://codeforces.com/profile/zamansheikh"><img src="https://img.shields.io/badge/Codeforces-0b0e17?style=for-the-badge&logo=codeforces&logoColor=4f8bff" alt="Codeforces"></a>
@@ -71,7 +69,7 @@ More of what I've shipped with Silifton: **[silifton.com/portfolio](https://sili
 
 ## Connect
 
-<p>
+<p align="center">
   <a href="https://x.com/zamansheikh_404"><img src="https://img.shields.io/badge/X-0b0e17?style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
   <a href="https://fb.com/zamansheikh.404"><img src="https://img.shields.io/badge/Facebook-0b0e17?style=for-the-badge&logo=facebook&logoColor=1877f2" alt="Facebook"></a>
   <a href="https://instagram.com/zamansheikh.cse"><img src="https://img.shields.io/badge/Instagram-0b0e17?style=for-the-badge&logo=instagram&logoColor=e4405f" alt="Instagram"></a>
@@ -81,9 +79,8 @@ More of what I've shipped with Silifton: **[silifton.com/portfolio](https://sili
 
 ## Support my work
 
-If my open-source tools help you, a coffee keeps them going.
-
-<p>
+<p align="center">
+  If my open-source tools help you, a coffee keeps them going.<br><br>
   <a href="https://www.buymeacoffee.com/zamansheikh"><img src="https://img.shields.io/badge/Buy_me_a_coffee-ffdd00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee"></a>
   <a href="https://ko-fi.com/zamansheikh"><img src="https://img.shields.io/badge/Ko--fi-f16061?style=for-the-badge&logo=kofi&logoColor=white" alt="Ko-fi"></a>
 </p>
