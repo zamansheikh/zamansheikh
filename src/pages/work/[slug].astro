@@ -1,6 +1,8 @@
 ---
 // One case study per entry in src/content/work. Order (for previous / next)
 // matches the home grid: `order` ascending, then newest year first.
+import fs from "node:fs";
+import path from "node:path";
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
 import { Image, getImage } from "astro:assets";
@@ -68,13 +70,51 @@ const phones = gallery.length > 1 && gallery.every((g) => g.ratio < 0.8);
 const phoneCols = Math.min(gallery.length, gallery.length === 6 ? 3 : 5);
 
 const title = `${d.title} · ${profile.name}`;
-// social card: the cover cropped to 1200x630, else the site card
-const ogImage = d.cover
-  ? (await getImage({ src: d.cover, width: 1200, height: 630, fit: "cover", position: "top", format: "jpg", quality: 82 })).src
-  : undefined;
+// social card: the generated card from scripts/og.mjs (public/og/work/<slug>.jpg),
+// else the cover cropped to 1200x630, else the site card
+const card = `/og/work/${entry.id}.jpg`;
+const ogImage = fs.existsSync(path.join(process.cwd(), "public", card))
+  ? card
+  : d.cover
+    ? (await getImage({ src: d.cover, width: 1200, height: 630, fit: "cover", position: "top", format: "jpg", quality: 82 })).src
+    : undefined;
+const ogAlt = `${d.title} (${categoryLabel[d.category]}, ${d.year}) by ${profile.name}: ${d.summary}`;
+
+// structured data: breadcrumb plus the work itself, authored by the site's Person node
+const site = Astro.site!;
+const pageUrl = new URL(Astro.url.pathname, site).toString();
+const personRef = { "@id": new URL("/#person", site).toString() };
+const isCode = d.category === "open-source";
+const jsonLd = [
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: new URL("/", site).toString() },
+      { "@type": "ListItem", position: 2, name: "Work", item: new URL("/#work", site).toString() },
+      { "@type": "ListItem", position: 3, name: d.title, item: pageUrl },
+    ],
+  },
+  {
+    "@type": isCode ? "SoftwareSourceCode" : "CreativeWork",
+    "@id": `${pageUrl}#work`,
+    name: d.title,
+    description: d.summary,
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    image: ogImage ? new URL(ogImage, site).toString() : new URL("/og.png", site).toString(),
+    author: personRef,
+    creator: personRef,
+    dateCreated: String(d.year),
+    genre: categoryLabel[d.category],
+    keywords: d.stack.join(", "),
+    inLanguage: "en",
+    ...(isCode && d.links.repo ? { codeRepository: d.links.repo } : {}),
+    ...(linkList.length ? { sameAs: linkList.map((l) => l.href) } : {}),
+  },
+];
 ---
 
-<Base title={title} description={d.summary} type="article" image={ogImage}>
+<Base title={title} description={d.summary} type="article" image={ogImage} imageAlt={ogImage ? ogAlt : undefined} jsonLd={jsonLd}>
   <article class="case">
     <header class="wrap head">
       <a class="back" href="/#work">

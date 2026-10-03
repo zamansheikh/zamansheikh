@@ -11,32 +11,63 @@ import { profile, links } from "../data/profile";
 interface Props {
   title?: string;
   description?: string;
-  image?: string; // absolute path under the site, e.g. /og.png
+  image?: string; // absolute path under the site, e.g. /og.png; always a 1200x630 card
+  imageAlt?: string;
   type?: "website" | "article";
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[]; // extra schema.org nodes for this page, merged into one @graph
 }
 const {
-  title = `${profile.name}, ${profile.role}`,
-  description = "Zaman Sheikh is the founder of Silifton and a Flutter and full-stack engineer who builds apps, real-time video systems and developer tools.",
+  title = `${profile.name} · Founder of Silifton, Flutter & full-stack engineer`,
+  description = "Zaman Sheikh is the founder of Silifton and a Flutter and full-stack engineer in Dhaka, Bangladesh. He builds apps, real-time video systems and developer tools.",
   image = "/og.png",
+  imageAlt = "Zaman Sheikh, founder of Silifton: portrait, the line “I build the hard parts of software.” and his GitHub contribution numbers.",
   type = "website",
+  noindex = false,
+  jsonLd = [],
 } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(image, Astro.site);
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site);
+const ogImage = new URL(image, site);
+const ogImageType = /\.jpe?g$/i.test(ogImage.pathname) ? "image/jpeg" : "image/png";
+const isHome = Astro.url.pathname === "/";
+
+// One graph per page: the Person everywhere, the WebSite on the home page, plus page nodes.
+const personId = new URL("/#person", site).toString();
 const person = {
-  "@context": "https://schema.org",
   "@type": "Person",
+  "@id": personId,
   name: profile.name,
   alternateName: profile.legalName,
   jobTitle: profile.role,
+  description: `${profile.headline} and founder of Silifton.`,
   url: profile.site,
-  image: new URL(profile.photo, Astro.site).toString(),
+  image: new URL(profile.photo, site).toString(),
+  email: profile.email,
+  address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
   worksFor: { "@type": "Organization", name: "Silifton", url: links.silifton },
   alumniOf: [
     { "@type": "CollegeOrUniversity", name: "Jahangirnagar University" },
     { "@type": "CollegeOrUniversity", name: "Daffodil International University" },
   ],
-  sameAs: [links.github, links.linkedin, links.x, links.youtube, links.instagram],
+  knowsAbout: [
+    "Flutter", "Dart", "Mobile app development", "Full-stack development", "Real-time video",
+    "WebRTC", "LiveKit", "Next.js", "NestJS", "Node.js", "Go", "TypeScript", "PostgreSQL",
+    "Bengali text shaping", "PDF generation", "Developer tools",
+  ],
+  sameAs: [links.github, links.linkedin, links.x, links.youtube, links.instagram, links.facebook],
 };
+const website = {
+  "@type": "WebSite",
+  "@id": new URL("/#website", site).toString(),
+  url: profile.site,
+  name: profile.name,
+  description,
+  inLanguage: "en",
+  author: { "@id": personId },
+  publisher: { "@id": personId },
+};
+const graph = { "@context": "https://schema.org", "@graph": [person, ...(isHome ? [website] : []), ...jsonLd] };
 ---
 
 <!doctype html>
@@ -46,24 +77,37 @@ const person = {
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    <meta name="author" content={profile.name} />
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="me" href={links.github} />
+    <link rel="me" href={links.x} />
     <meta name="theme-color" content="#f3f3ef" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f1012" media="(prefers-color-scheme: dark)" />
     <meta name="google-site-verification" content="TA52dG0sMafFkBCpkgC5wyzo47gOjT4ulN7FllYNEIo" />
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content={profile.name} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content={ogImageType} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    {type === "article" && <meta property="article:author" content={profile.site} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@zamansheikh_404" />
+    <meta name="twitter:creator" content="@zamansheikh_404" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
     <script is:inline>
       // apply the saved theme before first paint; mark JS as available for reveal animations
       try {

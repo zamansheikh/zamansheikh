@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "sync": "node scripts/sync.mjs",
+    "icons": "node scripts/icons.mjs",
+    "og": "node scripts/icons.mjs && node scripts/og.mjs",
     "build": "astro build",
     "build:github": "astro build",
     "preview": "astro preview"
@@ -22,5 +24,8 @@
     "sharp@0.35.5": true,
     "sharp@0.34.5": true,
     "esbuild@0.28.2": true
+  },
+  "devDependencies": {
+    "js-yaml": "^4.3.2"
   }
 }

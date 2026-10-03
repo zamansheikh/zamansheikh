@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import { profile } from "../data/profile";
 ---
 
-<Base title={`Page not found · ${profile.name}`} description="This page does not exist. Head back to the home page or browse the work.">
+<Base title={`Page not found · ${profile.name}`} description="This page does not exist. Head back to the home page or browse the work." noindex>
   <section class="wrap nf" aria-labelledby="nf-title">
     <p class="eyebrow">Error 404</p>
     <h1 id="nf-title">Nothing ships at this address.</h1>
