@@ -1,0 +1,107 @@
+---
+import { profile } from "../../data/profile";
+import { live } from "../../data/live";
+import ContributionGraph from "./ContributionGraph.astro";
+---
+
+<section id="top" class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <p class="eyebrow hero-eyebrow" data-reveal>
+      <span class="dot" aria-hidden="true"></span>
+      {profile.role} · {profile.location}
+    </p>
+
+    <h1 id="hero-title" class="hero-title" data-reveal>I build the hard parts of software.</h1>
+
+    <div class="hero-grid">
+      <div class="hero-copy" data-reveal>
+        <p class="hero-intro">
+          I'm Zaman Sheikh, founder of <a href="https://silifton.com">Silifton</a>. I take products from first commit to
+          production: Flutter apps, the real-time video servers behind them, and the developer tools that make both
+          faster to build.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#work">See the work <span aria-hidden="true">↓</span></a>
+          <a class="btn" href={`mailto:${profile.email}`}>Email me</a>
+          <a class="btn" href={profile.cv}>CV <span class="btn-note">PDF</span></a>
+        </div>
+      </div>
+
+      <figure class="byline" data-reveal>
+        <img
+          src={profile.photo}
+          alt="Portrait of Zaman Sheikh"
+          width="992"
+          height="1056"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <figcaption>
+          <span class="byline-name">{profile.name}</span>
+          <span class="byline-legal">{profile.legalName}</span>
+          <span class="byline-role">{profile.headline}</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="hero-graph" data-reveal>
+      <ContributionGraph calendar={live.github.calendar} total={live.github.contributionsLastYear} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding-block: clamp(48px, 8vw, 112px) clamp(56px, 7vw, 104px); }
+  .hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: clamp(20px, 3vw, 32px); }
+  .hero-title {
+    font-size: var(--t-hero);
+    font-weight: 650;
+    letter-spacing: -0.04em;
+    line-height: 0.96;
+    max-width: 13ch;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    margin-top: clamp(28px, 4vw, 48px);
+  }
+  @media (min-width: 860px) {
+    .hero-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 40px; align-items: end; }
+    .byline { justify-self: end; }
+  }
+
+  .hero-intro {
+    font-size: clamp(1.1rem, 1rem + 0.45vw, 1.35rem);
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 52ch;
+  }
+  .hero-intro a { color: var(--ink); }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .hero-ctas .btn { min-height: 46px; }
+  .btn-note { font: 500 var(--t-micro) / 1 var(--font-mono); color: var(--muted); }
+
+  .byline { margin: 0; display: flex; align-items: center; gap: 16px; }
+  .byline img {
+    width: 84px; height: 90px; object-fit: cover; object-position: 50% 20%;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--paper-2);
+  }
+  .byline figcaption { display: grid; gap: 2px; }
+  .byline-name { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; }
+  .byline-legal, .byline-role { font-family: var(--font-mono); font-size: var(--t-micro); color: var(--muted); }
+  @media (max-width: 859px) {
+    .byline { order: -1; }
+    .byline img { width: 64px; height: 68px; border-radius: 10px; }
+  }
+
+  .hero-graph {
+    margin-top: clamp(48px, 7vw, 88px);
+    padding-top: clamp(20px, 2.5vw, 28px);
+    border-top: 1px solid var(--line);
+  }
+</style>

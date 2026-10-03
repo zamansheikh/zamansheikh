@@ -1,0 +1,100 @@
+---
+import { experience, education } from "../../data/profile";
+---
+
+<section id="experience" class="section" aria-labelledby="exp-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Experience</p>
+      <h2 id="exp-title">From team lead to founder.</h2>
+    </header>
+
+    <ol class="timeline">
+      {
+        experience.map((r) => (
+          <li class:list={["role", { "is-current": r.current }]} data-reveal>
+            <div class="role-when">
+              <p class="role-period">
+                {r.current && <span class="dot dot-live" aria-hidden="true" />}
+                {r.period}
+              </p>
+              <p class="role-place">{r.place}</p>
+            </div>
+            <div class="role-what">
+              <h3>
+                <span>
+                  {r.title}, {r.url ? <a href={r.url}>{r.org}</a> : r.org}
+                </span>
+                {r.current && <span class="chip role-now">Now</span>}
+              </h3>
+              <ul>
+                {r.points.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="edu" data-reveal>
+      <h3 class="eyebrow">Education</h3>
+      <ul>
+        {
+          education.map((e) => (
+            <li>
+              <span class="edu-period">{e.period}</span>
+              <span class="edu-degree">{e.degree}</span>
+              <span class="edu-school">
+                {e.school}
+                {e.note && <> · {e.note}</>}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .role {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding-block: clamp(24px, 3vw, 36px);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 820px) {
+    .role { grid-template-columns: minmax(0, 3fr) minmax(0, 8fr); gap: 40px; }
+  }
+  .role-period {
+    display: flex; align-items: center; gap: 10px;
+    font: 600 var(--t-small) / 1.4 var(--font-mono); color: var(--ink);
+  }
+  .role-period .dot-live { width: 7px; height: 7px; }
+  .role-place { font: 500 var(--t-micro) / 1.5 var(--font-mono); color: var(--muted); margin-top: 4px; }
+  .role h3 { font-size: var(--t-h3); letter-spacing: -0.015em; line-height: 1.25; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+  .role h3 a { color: inherit; }
+  .role-now { font-family: var(--font-mono); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-soft); }
+  .role ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .role ul li { position: relative; padding-left: 20px; color: var(--ink-2); max-width: 70ch; }
+  .role ul li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 10px; height: 1px; background: var(--line-strong); }
+
+  .edu { margin-top: clamp(40px, 5vw, 64px); }
+  .edu h3 { margin-bottom: 16px; font-weight: 500; }
+  .edu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .edu li {
+    display: grid; gap: 2px 24px;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 12px 0; border-top: 1px solid var(--line);
+  }
+  @media (min-width: 820px) {
+    .edu li { grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) minmax(0, 4fr); gap: 40px; align-items: baseline; }
+  }
+  .edu-period { font: 500 var(--t-small) / 1.4 var(--font-mono); color: var(--muted); }
+  .edu-degree { font-weight: 600; }
+  .edu-school { color: var(--ink-2); font-size: var(--t-small); }
+</style>

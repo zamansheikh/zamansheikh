@@ -1,0 +1,39 @@
+---
+import { toolbox } from "../../data/profile";
+---
+
+<section id="toolbox" class="section" aria-labelledby="toolbox-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Toolbox</p>
+      <h2 id="toolbox-title">Grouped by what the work needs.</h2>
+    </header>
+    <div class="groups" data-reveal>
+      {
+        toolbox.map((g) => (
+          <div class="group">
+            <h3 class="eyebrow">{g.group}</h3>
+            <ul>
+              {g.items.map((i) => (
+                <li>{i}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 40px);
+  }
+  @media (min-width: 900px) { .groups { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .group { border-top: 1px solid var(--ink); padding-top: 14px; }
+  .group h3 { font-weight: 500; margin-bottom: 14px; }
+  .group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .group li { font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem); color: var(--ink); }
+</style>

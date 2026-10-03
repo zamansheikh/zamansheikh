@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/home/Hero.astro";
+import ProofStrip from "../components/home/ProofStrip.astro";
+import HardProblems from "../components/home/HardProblems.astro";
+import SelectedWork from "../components/home/SelectedWork.astro";
+import OpenSource from "../components/home/OpenSource.astro";
+import Experience from "../components/home/Experience.astro";
+import Writing from "../components/home/Writing.astro";
+import Toolbox from "../components/home/Toolbox.astro";
+import Contact from "../components/home/Contact.astro";
+---
+
+<Base>
+  <Hero />
+  <ProofStrip />
+  <HardProblems />
+  <SelectedWork />
+  <OpenSource />
+  <Experience />
+  <Writing />
+  <Toolbox />
+  <Contact />
+</Base>
+
+<style is:global>
+  /* components with inline scripts put a <script> between sections, which breaks the
+     global `.section + .section` rule; draw the divider for every later section */
+  main > .section ~ .section { border-top: 1px solid var(--line); }
+</style>

@@ -1,0 +1,76 @@
+---
+import { live } from "../../data/live";
+import { links } from "../../data/profile";
+
+const posts = live.posts.slice(0, 6);
+const iso = (d: string) => {
+  const t = new Date(d);
+  return Number.isNaN(t.getTime()) ? undefined : t.toISOString().slice(0, 10);
+};
+---
+
+<section id="writing" class="section" aria-labelledby="writing-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Writing</p>
+      <h2 id="writing-title">Notes from shipping.</h2>
+      <p class="lede">What we learn building for clients, written up on the Silifton blog.</p>
+    </header>
+
+    {
+      posts.length > 0 ? (
+        <ul class="posts">
+          {posts.map((p) => (
+            <li class="post" data-reveal>
+              <time class="post-date" datetime={iso(p.date)}>{p.date}</time>
+              <div class="post-main">
+                <h3>
+                  <a href={p.url}>{p.title}</a>
+                </h3>
+                <p class="post-excerpt">{p.excerpt}</p>
+              </div>
+              <p class="post-meta">
+                {p.category && <span>{p.category}</span>}
+                {p.read && <span>{p.read}</span>}
+              </p>
+            </li>
+          ))}
+        </ul>
+      ) : null
+    }
+    <p class="posts-all" data-reveal>
+      <a href={`${links.silifton}/blog`}>All posts on silifton.com <span aria-hidden="true">→</span></a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .posts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .post {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    padding: clamp(20px, 2.6vw, 28px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 820px) {
+    .post { grid-template-columns: minmax(0, 3fr) minmax(0, 7fr) minmax(0, 1.4fr); gap: 40px; align-items: baseline; }
+  }
+  .post-date { font: 500 var(--t-small) / 1.4 var(--font-mono); color: var(--muted); }
+  .post h3 { font-size: var(--t-h3); line-height: 1.25; letter-spacing: -0.015em; }
+  .post h3 a { text-decoration: none; color: var(--ink); transition: color 0.2s; }
+  .post h3 a::after { content: ""; position: absolute; inset: 0; }
+  .post:hover h3 a { color: var(--accent); }
+  .post h3 a:focus-visible { outline: none; }
+  .post h3 a:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+  .post-excerpt { margin-top: 8px; color: var(--ink-2); font-size: var(--t-small); max-width: 68ch; }
+  .post-meta { display: flex; gap: 12px; font: 500 var(--t-micro) / 1.5 var(--font-mono); color: var(--muted); }
+  @media (min-width: 820px) { .post-meta { flex-direction: column; gap: 2px; text-align: right; } }
+  .posts-all { margin-top: 24px; }
+  .posts-all a {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+    font-family: var(--font-mono); font-size: var(--t-small); text-decoration: none; color: var(--ink-2);
+  }
+  .posts-all a:hover { color: var(--accent); }
+</style>

@@ -1,0 +1,172 @@
+/* zamansheikh.com design system.
+   Layout concept: one long, quiet editorial page on a fine 12-column grid; the
+   contribution graph is the only loud element. Green = shipping activity (the
+   GitHub graph), the red dot = Bangladesh, used once per view at most.
+   Light is the default; dark follows the OS or the toggle (data-theme). */
+
+:root {
+  --paper: #f3f3ef;
+  --paper-2: #ebebe5;
+  --card: #fbfbf9;
+  --ink: #131416;
+  --ink-2: #3a3c41;
+  --muted: #6c6f76;
+  --line: #dcdcd4;
+  --line-strong: #c4c4bb;
+  --accent: #0b7a55;
+  --accent-soft: rgba(11, 122, 85, 0.1);
+  --accent-ink: #ffffff;
+  --signal: #e5322d;
+  /* contribution levels 0-4 */
+  --g0: #e2e3dc;
+  --g1: #b6dcc6;
+  --g2: #6cc097;
+  --g3: #22966a;
+  --g4: #0a6646;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 12px 32px -18px rgba(19, 20, 22, 0.28);
+
+  --font-display: "Bricolage Grotesque Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Hanken Grotesk Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
+
+  /* type scale (fluid) */
+  --t-hero: clamp(2.6rem, 1.4rem + 5.6vw, 6.4rem);
+  --t-h1: clamp(2.1rem, 1.4rem + 2.8vw, 3.6rem);
+  --t-h2: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+  --t-h3: clamp(1.15rem, 1rem + 0.5vw, 1.4rem);
+  --t-body: 1.0625rem;
+  --t-small: 0.9375rem;
+  --t-micro: 0.75rem;
+
+  --max: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --section: clamp(72px, 9vw, 140px);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1012;
+    --paper-2: #16171a;
+    --card: #18191c;
+    --ink: #eeeeea;
+    --ink-2: #c6c7c2;
+    --muted: #8d9096;
+    --line: #26282c;
+    --line-strong: #34363b;
+    --accent: #45d19c;
+    --accent-soft: rgba(69, 209, 156, 0.12);
+    --accent-ink: #062b1d;
+    --signal: #ff4f47;
+    --g0: #1b1c1f;
+    --g1: #123f2d;
+    --g2: #186b49;
+    --g3: #24a06a;
+    --g4: #52e3a4;
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 16px 40px -20px rgba(0, 0, 0, 0.8);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1012;
+  --paper-2: #16171a;
+  --card: #18191c;
+  --ink: #eeeeea;
+  --ink-2: #c6c7c2;
+  --muted: #8d9096;
+  --line: #26282c;
+  --line-strong: #34363b;
+  --accent: #45d19c;
+  --accent-soft: rgba(69, 209, 156, 0.12);
+  --accent-ink: #062b1d;
+  --signal: #ff4f47;
+  --g0: #1b1c1f;
+  --g1: #123f2d;
+  --g2: #186b49;
+  --g3: #24a06a;
+  --g4: #52e3a4;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 16px 40px -20px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 88px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img, svg, video { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; margin: 0; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+code, kbd, pre { font-family: var(--font-mono); font-size: 0.9em; }
+
+/* ---------- layout helpers ---------- */
+.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section); }
+.section + .section { border-top: 1px solid var(--line); }
+.stack { display: flex; flex-direction: column; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* section header: eyebrow + title + optional lede, used by every home section */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.section-head { display: grid; gap: 14px; margin-bottom: clamp(36px, 5vw, 64px); max-width: 760px; }
+.section-head h2 { font-size: var(--t-h1); }
+.lede { color: var(--ink-2); font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem); max-width: 62ch; }
+
+/* ---------- shared components ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 20px; border-radius: 999px;
+  font: 600 var(--t-small) / 1 var(--font-body);
+  text-decoration: none; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--ink);
+  transition: transform 0.2s var(--ease), border-color 0.2s, background 0.2s;
+}
+.btn:hover { transform: translateY(-1px); border-color: var(--ink); }
+.btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px;
+  font: 500 var(--t-micro) / 1.4 var(--font-mono);
+  color: var(--ink-2); background: var(--paper-2); border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); display: inline-block; }
+.dot-live { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* reveal-on-scroll: content is visible without JS; JS adds .js to <html> and
+   only then hides not-yet-seen items, so nothing is ever stuck invisible */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal]:not(.is-in) { opacity: 0; transform: translateY(18px); }
+  [data-reveal] { transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+}

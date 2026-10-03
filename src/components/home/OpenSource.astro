@@ -1,0 +1,184 @@
+---
+import { live, type Repo } from "../../data/live";
+import { links } from "../../data/profile";
+import { getCollection } from "astro:content";
+
+const packages = live.packages;
+
+// Repos are picked by hand: star counts alone would surface old coursework.
+const picks: { name: string; label?: string }[] = [
+  { name: "campussaga" },
+  { name: "browser-mcp", label: "Pagewright" },
+  { name: "ClipStack" },
+  { name: "git-vanish" },
+  { name: "bangla_pdf" },
+  { name: "bangla-pdf" },
+  { name: "oimage" },
+  { name: "svga-studio" },
+  { name: "Calcu" },
+  { name: "plotcalc" },
+  { name: "lifeque" },
+  { name: "flutter_svga_easyplayer" },
+];
+const work = await getCollection("work");
+const byName = new Map(live.github.repos.map((r) => [r.name.toLowerCase(), r]));
+const repos = picks
+  .map((p) => {
+    const r = byName.get(p.name.toLowerCase());
+    if (!r) return null;
+    const pkg = packages.find((k) => k.name.toLowerCase() === r.name.toLowerCase() || k.repo === r.url);
+    // a repo without a description borrows its package's, then its case study's summary
+    const study = work.find((w) => w.id === r.name.toLowerCase() || w.data.links.repo?.toLowerCase() === r.url.toLowerCase());
+    return { ...r, label: p.label ?? r.name, description: r.description?.trim() || pkg?.description || study?.data.summary || "" };
+  })
+  .filter((r): r is Repo & { label: string } => r !== null)
+  .slice(0, 6);
+
+// Package homepage: GitHub repos say "Source"; anything else (e.g. voxartc.com) is the product site.
+const home = (url?: string) => (!url ? null : url.includes("github.com") ? { href: url, label: "Source" } : { href: url, label: "Site" });
+const fmt = new Intl.NumberFormat("en-US");
+---
+
+<section id="open-source" class="section" aria-labelledby="oss-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Open source &amp; packages</p>
+      <h2 id="oss-title">Published, versioned, installed by other people.</h2>
+      <p class="lede">
+        When a client project needs something that does not exist, I build it as a package and publish it. Versions
+        below are synced from pub.dev and npm.
+      </p>
+    </header>
+
+    {
+      packages.length > 0 ? (
+        <ul class="pkgs" data-reveal>
+          {packages.map((p) => {
+            const h = home(p.repo);
+            return (
+              <li class="pkg">
+                <span class:list={["reg", `reg-${p.registry}`]}>{p.registry}</span>
+                <div class="pkg-main">
+                  <p class="pkg-name">
+                    <a href={p.url}>{p.name}</a>
+                    <span class="pkg-ver">v{p.version}</span>
+                  </p>
+                  <p class="pkg-desc">{p.description}</p>
+                </div>
+                {h && (
+                  <a class="pkg-home" href={h.href} aria-label={`${p.name}: ${h.label.toLowerCase()}`}>
+                    {h.label} <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p class="empty">
+          Package data is synced at build time. Meanwhile, the source is on <a href={links.github}>GitHub</a>.
+        </p>
+      )
+    }
+
+    {
+      repos.length > 0 && (
+        <div class="repos-block" data-reveal>
+          <div class="repos-head">
+            <h3>On GitHub</h3>
+            <a class="repos-all" href={links.github}>
+              {live.github.publicRepos > 0 ? `All ${fmt.format(live.github.publicRepos)} repositories` : "All repositories"} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <ul class="repos">
+            {repos.map((r) => (
+              <li class="repo">
+                <a class="repo-name" href={r.url}>
+                  {r.label}
+                </a>
+                {r.label !== r.name && <span class="repo-slug">{r.name}</span>}
+                {r.description && <p class="repo-desc">{r.description}</p>}
+                <p class="repo-meta">
+                  {r.language && <span>{r.language}</span>}
+                  <span aria-label={`${r.stars} stars`}>★ {fmt.format(r.stars)}</span>
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .pkgs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .pkg {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+    gap: 6px 20px;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .reg {
+    justify-self: start;
+    font: 600 0.6875rem / 1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 5px 7px; border-radius: 6px;
+    border: 1px solid var(--line-strong); color: var(--ink-2);
+  }
+  .reg-pub { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+  .pkg-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+  .pkg-name a {
+    font-family: var(--font-mono); font-weight: 600; font-size: 1rem;
+    text-decoration: none; color: var(--ink);
+    padding-block: 10px; margin-block: -10px;
+  }
+  .pkg-name a:hover { color: var(--accent); }
+  .pkg-ver { font: 500 var(--t-micro) / 1 var(--font-mono); color: var(--muted); }
+  .pkg-desc { margin-top: 6px; color: var(--ink-2); font-size: var(--t-small); line-height: 1.55; max-width: 78ch; }
+  .pkg-home {
+    font: 500 var(--t-micro) / 1 var(--font-mono); color: var(--muted); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px; min-height: 44px; margin-block: -14px; padding-inline: 4px;
+  }
+  .pkg-home:hover { color: var(--ink); }
+  @media (max-width: 640px) {
+    .pkg { grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 12px; }
+    .pkg-main { display: contents; }
+    .pkg-name { grid-column: 2; grid-row: 1; }
+    .pkg-home { grid-column: 3; grid-row: 1; }
+    .pkg-desc { grid-column: 1 / -1; margin-top: 4px; }
+  }
+
+  .repos-block { margin-top: clamp(48px, 6vw, 80px); }
+  .repos-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .repos-head h3 { font-size: var(--t-h3); }
+  .repos-all { font-family: var(--font-mono); font-size: var(--t-small); text-decoration: none; color: var(--ink-2); display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+  .repos-all:hover { color: var(--accent); }
+  .repos {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 14px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 640px) { .repos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) { .repos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .repo {
+    position: relative;
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 18px 20px;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    transition: border-color 0.2s;
+  }
+  .repo:hover { border-color: var(--line-strong); }
+  .repo-name { font-family: var(--font-mono); font-weight: 600; text-decoration: none; color: var(--ink); overflow-wrap: anywhere; }
+  .repo-name::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+  .repo-name:focus-visible { outline: none; }
+  .repo-name:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .repo-slug { font: 500 var(--t-micro) / 1 var(--font-mono); color: var(--muted); margin-top: -4px; }
+  .repo-desc {
+    color: var(--ink-2); font-size: var(--t-small); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .repo-meta { margin-top: auto; display: flex; gap: 16px; font: 500 var(--t-micro) / 1.4 var(--font-mono); color: var(--muted); }
+  .empty { color: var(--ink-2); }
+</style>

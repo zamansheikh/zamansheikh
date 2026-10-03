@@ -1,0 +1,202 @@
+---
+// Three problems that show depth: each panel pairs a claim with a small, concrete artifact.
+import "@fontsource/noto-sans-bengali/bengali-500.css";
+import { getCollection } from "astro:content";
+import { live } from "../../data/live";
+
+const work = await getCollection("work");
+// Link to the case study when the content collection has it; otherwise to the package.
+const caseStudy = (match: RegExp, fallback: string) => {
+  const e = work.find((w) => match.test(w.id));
+  return e ? { href: `/work/${e.id}/`, label: "Read the case study" } : { href: fallback, label: "See the project" };
+};
+const pkg = (name: string) => live.packages.find((p) => p.name === name);
+
+const voxa = caseStudy(/voxa/i, pkg("voxa_rtc_engine")?.url ?? "https://pub.dev/packages/voxa_rtc_engine");
+const bangla = caseStudy(/bangla/i, pkg("bangla_pdf")?.url ?? "https://pub.dev/packages/bangla_pdf");
+const pagewright = caseStudy(/pagewright|browser-mcp/i, "https://github.com/zamansheikh/browser-mcp");
+const voxaVersion = pkg("voxa_rtc_engine")?.version;
+const banglaVersion = pkg("bangla_pdf")?.version;
+const banglaNpm = pkg("bangla-pdf")?.version;
+---
+
+<section id="problems" class="section" aria-labelledby="problems-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Hard problems</p>
+      <h2 id="problems-title">Three things most teams buy instead of build.</h2>
+      <p class="lede">
+        A video engine, a text shaper and a browser for AI agents. Each one started as a blocker on a real product and
+        ended as something other people now install.
+      </p>
+    </header>
+
+    <ol class="problems">
+      <li class="problem" data-reveal>
+        <div class="problem-copy">
+          <p class="problem-num">01 · Real-time video</p>
+          <h3>Voxa RTC</h3>
+          <p>
+            An Agora-compatible real-time video engine running on self-hosted LiveKit. Same classes, signatures, error
+            codes and callback order as <code>agora_rtc_engine</code>, so a live-streaming app moves off per-minute
+            pricing without rewriting a screen.
+          </p>
+          <ul class="facts">
+            <li>Self-hosted media servers, owned end to end</li>
+            <li>Beauty filters and AR effects on the capture path</li>
+            {voxaVersion && <li>voxa_rtc_engine {voxaVersion} on pub.dev</li>}
+          </ul>
+          <a class="more" href={voxa.href}>{voxa.label} <span aria-hidden="true">→</span></a>
+        </div>
+        <figure class="problem-art art-code">
+          <figcaption class="art-bar"><span>lib/live/room.dart</span><span>migration</span></figcaption>
+          <pre aria-label="Code diff: the Agora import replaced with the Voxa import"><code><span class="ln del"><span class="sign">-</span>import 'package:agora_rtc_engine/agora_rtc_engine.dart';</span><span class="ln add"><span class="sign">+</span>import 'package:voxa_rtc_engine/voxa_rtc_engine.dart';</span><span class="ln ctx"><span class="sign"> </span>&nbsp;</span><span class="ln ctx"><span class="sign"> </span>// Everything below this line stays the same.</span></code></pre>
+          <p class="art-note">One import. The rest of the app does not change.</p>
+        </figure>
+      </li>
+
+      <li class="problem" data-reveal>
+        <div class="problem-copy">
+          <p class="problem-num">02 · Text shaping</p>
+          <h3>bangla_pdf</h3>
+          <p>
+            Real OpenType shaping for Bangla, written in pure Dart and ported to TypeScript. Conjuncts, vowel signs and
+            reph render correctly in generated PDFs, and the text copies back out as clean Unicode.
+          </p>
+          <ul class="facts">
+            <li>No native dependencies, runs anywhere Dart runs</li>
+            <li>Dart and npm extractors produce byte-identical text</li>
+            {banglaVersion && <li>bangla_pdf {banglaVersion} on pub.dev{banglaNpm && <> · bangla-pdf {banglaNpm} on npm</>}</li>}
+          </ul>
+          <a class="more" href={bangla.href}>{bangla.label} <span aria-hidden="true">→</span></a>
+        </div>
+        <figure class="problem-art art-bangla">
+          <div class="bn-compare">
+            <div>
+              <p class="bn-tag">Naive renderer</p>
+              <p class="bn bn-broken" lang="bn" aria-label="ক্ষমতা drawn without shaping: the conjunct falls apart">ক্‌ষমতা</p>
+            </div>
+            <div>
+              <p class="bn-tag bn-tag-ok">bangla_pdf</p>
+              <p class="bn" lang="bn">ক্ষমতা</p>
+            </div>
+          </div>
+          <p class="bn-formula" aria-label="ka plus hasant plus ssa forms the conjunct ksha">
+            <span lang="bn">ক</span> + <span lang="bn">্</span> + <span lang="bn">ষ</span> → <span lang="bn">ক্ষ</span>
+          </p>
+          <figcaption class="art-note">
+            “ক্ষমতা” means power. Without shaping, ক and ষ never join, the hasant shows as a stray mark, pre-base vowel
+            signs land after their consonant and reph floats loose. Copy-paste then returns the wrong characters.
+          </figcaption>
+        </figure>
+      </li>
+
+      <li class="problem" data-reveal>
+        <div class="problem-copy">
+          <p class="problem-num">03 · AI tooling</p>
+          <h3>Pagewright</h3>
+          <p>
+            Gives an AI agent a real browser. An MCP server talks to a Chrome extension, so the agent navigates, reads
+            and acts in an actual tab, with the user's sessions, instead of a headless sandbox.
+          </p>
+          <ul class="facts">
+            <li>MCP server plus a Chrome extension</li>
+            <li>Works with any MCP client</li>
+          </ul>
+          <a class="more" href={pagewright.href}>{pagewright.label} <span aria-hidden="true">→</span></a>
+        </div>
+        <figure class="problem-art art-code">
+          <figcaption class="art-bar"><span>agent → mcp → chrome</span><span>tool calls</span></figcaption>
+          <pre><code><span class="ln"><span class="k">{"{"}</span><span class="p">"tool"</span>: <span class="s">"navigate"</span>, <span class="p">"url"</span>: <span class="s">"https://silifton.com"</span><span class="k">{"}"}</span></span><span class="ln"><span class="k">{"{"}</span><span class="p">"tool"</span>: <span class="s">"read_page"</span><span class="k">{"}"}</span></span></code></pre>
+          <p class="art-note">The agent sees the page you see, in your own browser.</p>
+        </figure>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  .problems { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(20px, 3vw, 32px); }
+  .problem {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: clamp(18px, 3.6vw, 48px);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  @media (min-width: 900px) {
+    .problem { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+  }
+  .problem-num { font-family: var(--font-mono); font-size: var(--t-micro); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+  .problem h3 { font-size: var(--t-h2); margin: 12px 0 16px; }
+  .problem-copy > p:not(.problem-num) { color: var(--ink-2); }
+  .problem-copy code { font-size: 0.86em; padding: 1px 5px; border-radius: 5px; background: var(--paper-2); border: 1px solid var(--line); }
+  .facts { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
+  .facts li {
+    position: relative; padding-left: 20px;
+    font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ink-2); line-height: 1.5;
+  }
+  .facts li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 10px; height: 1px; background: var(--line-strong); }
+  .more {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 18px;
+    font-weight: 600; text-decoration: none; color: var(--ink);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .more:hover { color: var(--accent); border-color: currentColor; }
+  .more span { transition: transform 0.2s var(--ease); }
+  .more:hover span { transform: translateX(3px); }
+
+  /* artifacts */
+  .problem-art {
+    margin: 0; min-width: 0;
+    border: 1px solid var(--line); border-radius: 12px;
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .art-bar {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 10px 16px; border-bottom: 1px solid var(--line);
+    font: 500 var(--t-micro) / 1.4 var(--font-mono); color: var(--muted);
+  }
+  .art-code pre {
+    margin: 0; padding: 16px 0;
+    white-space: pre-wrap; overflow-wrap: anywhere;
+    font-size: clamp(0.72rem, 0.66rem + 0.25vw, 0.85rem); line-height: 1.85;
+  }
+  .art-code code { display: block; }
+  /* hanging indent keeps wrapped lines clear of the +/- column on phones */
+  .ln { display: block; padding: 2px 16px 2px calc(16px + 2ch); text-indent: -2ch; }
+  .sign { display: inline-block; width: 2ch; text-indent: 0; user-select: none; }
+  .del { background: color-mix(in srgb, var(--signal) 11%, transparent); color: color-mix(in srgb, var(--signal) 70%, var(--ink)); }
+  .add { background: var(--accent-soft); color: color-mix(in srgb, var(--accent) 70%, var(--ink)); }
+  .ctx { color: var(--muted); }
+  .art-code .k { color: var(--muted); }
+  .art-code .p { color: var(--ink-2); }
+  .art-code .s { color: color-mix(in srgb, var(--accent) 75%, var(--ink)); }
+  .art-note {
+    padding: 12px 16px; border-top: 1px solid var(--line);
+    font-size: var(--t-small); color: var(--muted); line-height: 1.5;
+  }
+
+  .art-bangla { padding: 0; }
+  .bn-compare { display: grid; grid-template-columns: 1fr 1fr; }
+  .bn-compare > div { padding: 18px 16px 8px; min-width: 0; }
+  .bn-compare > div + div { border-left: 1px solid var(--line); }
+  .bn-tag { font: 500 var(--t-micro) / 1.4 var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .bn-tag-ok { color: var(--accent); }
+  .bn {
+    font-family: "Noto Sans Bengali", var(--font-body);
+    font-weight: 500;
+    font-size: clamp(2.2rem, 1.4rem + 3.4vw, 4.2rem);
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  .bn-broken { color: var(--muted); }
+  .bn-formula {
+    padding: 10px 16px 16px;
+    font-family: var(--font-mono); font-size: var(--t-small); color: var(--muted);
+  }
+  .bn-formula span { font-family: "Noto Sans Bengali", var(--font-body); font-size: 1.35rem; color: var(--ink); }
+</style>

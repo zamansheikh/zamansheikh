@@ -1,0 +1,263 @@
+---
+// The hero's signature: Zaman's real GitHub contribution calendar, drawn as SVG.
+// Two renderings of the same data: the full year (53 weeks) and the most recent
+// 20 weeks for narrow screens, so cells stay legible on a phone.
+import type { CalendarDay } from "../../data/live";
+
+interface Props {
+  calendar: CalendarDay[];
+  total: number;
+}
+const { calendar, total } = Astro.props;
+
+// GitHub's calendar starts on a Sunday; if the data does not, pad the first week.
+const days: (CalendarDay | null)[] = [...calendar];
+if (days.length) {
+  const firstDow = new Date(days[0]!.date + "T00:00:00Z").getUTCDay();
+  for (let i = 0; i < firstDow; i++) days.unshift(null);
+}
+// With no data yet, draw an empty year so the layout never collapses.
+if (!calendar.length) for (let i = 0; i < 53 * 7; i++) days.push(null);
+
+const weeks: (CalendarDay | null)[][] = [];
+for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7));
+
+const fmtNum = new Intl.NumberFormat("en-US");
+const fmtDate = (d: string) =>
+  new Date(d + "T00:00:00Z").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+const monthName = (d: string) => new Date(d + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+
+const busiest = calendar.reduce<CalendarDay | null>((m, d) => (!m || d.count > m.count ? d : m), null);
+const activeDays = calendar.filter((d) => d.count > 0).length;
+const first = calendar[0]?.date;
+const last = calendar.at(-1)?.date;
+
+const summary = calendar.length
+  ? `GitHub contribution calendar: ${fmtNum.format(total)} contributions between ${fmtDate(first!)} and ${fmtDate(last!)}, on ${activeDays} of ${calendar.length} days. Busiest day: ${fmtDate(busiest!.date)} with ${busiest!.count}.`
+  : "GitHub contribution calendar (data not available yet).";
+
+// geometry in viewBox units
+const CELL = 14;
+const GAP = 3;
+const STEP = CELL + GAP;
+const LEFT = 30; // day labels
+const TOP = 20; // month labels
+
+function layout(ws: (CalendarDay | null)[][]) {
+  const months: { x: number; label: string }[] = [];
+  let lastMonth = "";
+  let lastCol = -10;
+  ws.forEach((w, col) => {
+    const firstReal = w.find(Boolean);
+    if (!firstReal) return;
+    const m = monthName(firstReal.date);
+    if (m !== lastMonth) {
+      if (col - lastCol >= 3 && col < ws.length - 1) months.push({ x: LEFT + col * STEP, label: m });
+      lastMonth = m;
+      lastCol = col;
+    }
+  });
+  return { months, width: LEFT + ws.length * STEP - GAP, height: TOP + 7 * STEP - GAP };
+}
+
+const views = [
+  { key: "full", weeks, font: 10 },
+  { key: "recent", weeks: weeks.slice(-20), font: 11 },
+].map((v) => ({ ...v, ...layout(v.weeks) }));
+---
+
+<figure class="graph" data-graph>
+  <figcaption class="graph-head">
+    <p class="graph-total">
+      {
+        total > 0 ? (
+          <>
+            <strong>{fmtNum.format(total)}</strong> contributions in the last year
+          </>
+        ) : (
+          <>Contributions in the last year</>
+        )
+      }
+      <span class="graph-recent-note">, last 20 weeks shown</span>
+    </p>
+    <a class="graph-src" href="https://github.com/zamansheikh">github.com/zamansheikh</a>
+  </figcaption>
+
+  <div class="graph-body">
+    {
+      views.map((v) => (
+        <svg
+          class={`graph-svg graph-${v.key}`}
+          viewBox={`0 0 ${v.width} ${v.height}`}
+          role="img"
+          aria-label={summary}
+          tabindex={calendar.length ? 0 : undefined}
+          style={`--fs:${v.font}`}
+        >
+          {v.months.map((m) => (
+            <text x={m.x} y={TOP - 7} class="lbl" font-size={v.font}>
+              {m.label}
+            </text>
+          ))}
+          {["Mon", "Wed", "Fri"].map((d, i) => (
+            <text x={0} y={TOP + (i * 2 + 1) * STEP + CELL - 3} class="lbl" font-size={v.font}>
+              {d}
+            </text>
+          ))}
+          {v.weeks.map((w, col) => (
+            <g style={`--c:${col}`}>
+              {w.map((d, row) =>
+                d ? (
+                  <rect
+                    x={LEFT + col * STEP}
+                    y={TOP + row * STEP}
+                    width={CELL}
+                    height={CELL}
+                    rx="3"
+                    class={`l${d.level}`}
+                    data-date={d.date}
+                    data-count={d.count}
+                  />
+                ) : calendar.length ? null : (
+                  <rect x={LEFT + col * STEP} y={TOP + row * STEP} width={CELL} height={CELL} rx="3" class="l0" />
+                ),
+              )}
+            </g>
+          ))}
+        </svg>
+      ))
+    }
+    <div class="graph-tip" role="status" aria-live="polite" hidden></div>
+  </div>
+
+  <div class="graph-foot">
+    <p class="graph-meta">
+      {calendar.length ? <>Active {activeDays} of {calendar.length} days · busiest day {fmtNum.format(busiest!.count)}</> : <>Synced from GitHub at build time</>}
+    </p>
+    <p class="legend" aria-hidden="true">
+      <span>Less</span>
+      <i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i>
+      <span>More</span>
+    </p>
+  </div>
+</figure>
+
+<style>
+  .graph { margin: 0; }
+  .graph-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px;
+    margin-bottom: 14px;
+  }
+  .graph-total { font-family: var(--font-mono); font-size: var(--t-small); color: var(--ink-2); }
+  .graph-total strong { color: var(--ink); font-weight: 700; }
+  .graph-recent-note { display: none; }
+  .graph-src {
+    font-family: var(--font-mono); font-size: var(--t-micro); color: var(--muted);
+    text-decoration: none; padding-block: 12px; margin-block: -12px;
+  }
+  .graph-src:hover { color: var(--ink); }
+
+  .graph-body { position: relative; }
+  .graph-svg { width: 100%; height: auto; overflow: visible; }
+  .graph-svg:focus-visible { outline-offset: 8px; }
+  .graph-recent { display: none; }
+  @media (max-width: 760px) {
+    .graph-full { display: none; }
+    .graph-recent { display: block; }
+    .graph-recent-note { display: inline; }
+  }
+
+  .lbl { fill: var(--muted); font-family: var(--font-mono); }
+  rect { stroke: transparent; stroke-width: 1.5; transition: stroke 0.15s; }
+  rect.l0 { fill: var(--g0); }
+  rect.l1 { fill: var(--g1); }
+  rect.l2 { fill: var(--g2); }
+  rect.l3 { fill: var(--g3); }
+  rect.l4 { fill: var(--g4); }
+  rect[data-date]:hover, rect.is-active { stroke: var(--ink); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* fill-opacity, not opacity/transform: it paints on the main thread instead of
+       promoting ~70 SVG groups to compositor layers */
+    .graph-svg rect { animation: cell-in 0.6s ease-out backwards; animation-delay: calc(var(--c) * 14ms + 150ms); }
+  }
+  @keyframes cell-in {
+    from { fill-opacity: 0; }
+  }
+
+  .graph-tip {
+    position: absolute; z-index: 5; pointer-events: none;
+    transform: translate(-50%, calc(-100% - 10px));
+    padding: 7px 10px; border-radius: 8px;
+    background: var(--ink); color: var(--paper);
+    font: 500 var(--t-micro) / 1.3 var(--font-mono); white-space: nowrap;
+  }
+  .graph-tip b { font-weight: 700; }
+
+  .graph-foot {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 20px;
+    margin-top: 14px;
+    font-family: var(--font-mono); font-size: var(--t-micro); color: var(--muted);
+  }
+  .legend { display: inline-flex; align-items: center; gap: 4px; }
+  .legend span { margin-inline: 4px; }
+  .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .legend .l0 { background: var(--g0); }
+  .legend .l1 { background: var(--g1); }
+  .legend .l2 { background: var(--g2); }
+  .legend .l3 { background: var(--g3); }
+  .legend .l4 { background: var(--g4); }
+</style>
+
+<script>
+  // Tooltip on hover, and arrow-key exploration when the graph has focus.
+  const fmt = (d: string) =>
+    new Date(d + "T00:00:00Z").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+
+  document.querySelectorAll<HTMLElement>("[data-graph]").forEach((fig) => {
+    const body = fig.querySelector<HTMLElement>(".graph-body")!;
+    const tip = fig.querySelector<HTMLElement>(".graph-tip")!;
+    let active: SVGRectElement | null = null;
+
+    const show = (r: SVGRectElement) => {
+      active?.classList.remove("is-active");
+      active = r;
+      r.classList.add("is-active");
+      const n = Number(r.dataset.count);
+      tip.innerHTML = `<b>${n === 0 ? "No" : n.toLocaleString("en-US")}</b> contribution${n === 1 ? "" : "s"} · ${fmt(r.dataset.date!)}`;
+      tip.hidden = false;
+      const b = body.getBoundingClientRect();
+      const c = r.getBoundingClientRect();
+      const half = tip.offsetWidth / 2;
+      const x = Math.min(Math.max(c.left - b.left + c.width / 2, half), b.width - half);
+      tip.style.left = `${x}px`;
+      tip.style.top = `${c.top - b.top}px`;
+    };
+    const hide = () => {
+      active?.classList.remove("is-active");
+      active = null;
+      tip.hidden = true;
+    };
+
+    fig.querySelectorAll<SVGSVGElement>(".graph-svg").forEach((svg) => {
+      const cells = [...svg.querySelectorAll<SVGRectElement>("rect[data-date]")];
+      if (!cells.length) return;
+      svg.addEventListener("pointerover", (e) => {
+        const t = e.target as Element;
+        if (t instanceof SVGRectElement && t.dataset.date) show(t);
+      });
+      svg.addEventListener("pointerleave", hide);
+      svg.addEventListener("focus", () => show(cells[cells.length - 1]!));
+      svg.addEventListener("blur", hide);
+      svg.addEventListener("keydown", (e) => {
+        if (!active) return;
+        const i = cells.indexOf(active);
+        const step = { ArrowLeft: -7, ArrowRight: 7, ArrowUp: -1, ArrowDown: 1, Home: -i, End: cells.length - 1 - i }[e.key];
+        if (step === undefined) return;
+        e.preventDefault();
+        const next = cells[Math.min(Math.max(i + step, 0), cells.length - 1)];
+        if (next) show(next);
+      });
+    });
+  });
+</script>

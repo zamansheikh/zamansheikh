@@ -1,0 +1,99 @@
+---
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/hanken-grotesk";
+import "@fontsource-variable/jetbrains-mono";
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import CommandPalette from "../components/CommandPalette.astro";
+import { profile, links } from "../data/profile";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string; // absolute path under the site, e.g. /og.png
+  type?: "website" | "article";
+}
+const {
+  title = `${profile.name}, ${profile.role}`,
+  description = "Zaman Sheikh is the founder of Silifton and a Flutter and full-stack engineer who builds apps, real-time video systems and developer tools.",
+  image = "/og.png",
+  type = "website",
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  alternateName: profile.legalName,
+  jobTitle: profile.role,
+  url: profile.site,
+  image: new URL(profile.photo, Astro.site).toString(),
+  worksFor: { "@type": "Organization", name: "Silifton", url: links.silifton },
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "Jahangirnagar University" },
+    { "@type": "CollegeOrUniversity", name: "Daffodil International University" },
+  ],
+  sameAs: [links.github, links.linkedin, links.x, links.youtube, links.instagram],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f3f3ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1012" media="(prefers-color-scheme: dark)" />
+    <meta name="google-site-verification" content="TA52dG0sMafFkBCpkgC5wyzo47gOjT4ulN7FllYNEIo" />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@zamansheikh_404" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+    <script is:inline>
+      // apply the saved theme before first paint; mark JS as available for reveal animations
+      try {
+        const t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch {}
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main"><slot /></main>
+    <Footer />
+    <CommandPalette />
+    <script>
+      // reveal-on-scroll for [data-reveal]; anything already on screen is shown at once
+      const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
+      if (!("IntersectionObserver" in window)) items.forEach((el) => el.classList.add("is-in"));
+      else {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }),
+          { rootMargin: "0px 0px -8% 0px" },
+        );
+        items.forEach((el) => io.observe(el));
+      }
+    </script>
+    <style>
+      .skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 14px; border-radius: 8px; background: var(--ink); color: var(--paper); text-decoration: none; }
+      .skip:focus { top: 12px; }
+    </style>
+  </body>
+</html>

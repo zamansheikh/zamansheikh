@@ -1,0 +1,70 @@
+---
+// Four real numbers, all synced at build time. A missing number shows a dash, never a guess.
+import { getCollection } from "astro:content";
+import { live } from "../../data/live";
+import { profile } from "../../data/profile";
+
+const work = await getCollection("work");
+const liveProducts = work.filter((w) => w.data.status === "live").length;
+const pub = live.packages.filter((p) => p.registry === "pub").length;
+const npm = live.packages.filter((p) => p.registry === "npm").length;
+const fmt = new Intl.NumberFormat("en-US");
+
+const tiles = [
+  { value: live.github.contributionsAllTime, label: `Contributions since ${profile.githubSince}`, note: "From the GitHub contribution graph" },
+  { value: live.packages.length, label: "Published packages", note: pub || npm ? `${pub} on pub.dev · ${npm} on npm` : "pub.dev and npm" },
+  { value: liveProducts, label: "Live products", note: "Running in production today" },
+  { value: live.github.publicRepos, label: "Public repositories", note: "github.com/zamansheikh" },
+];
+---
+
+<section class="proof" aria-label="By the numbers">
+  <div class="wrap">
+    <dl class="proof-grid" data-reveal>
+      {
+        tiles.map((t) => (
+          <div class="tile">
+            <dt class="eyebrow">{t.label}</dt>
+            <dd class="tile-value">{t.value > 0 ? fmt.format(t.value) : "–"}</dd>
+            <dd class="tile-note">{t.note}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .proof { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .proof-grid {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (min-width: 900px) { .proof-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+  .tile {
+    display: flex; flex-direction: column; gap: 10px;
+    padding: clamp(24px, 3.4vw, 40px) clamp(14px, 2vw, 28px);
+    border-left: 1px solid var(--line);
+  }
+  .tile:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .tile:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  @media (min-width: 900px) {
+    .tile:nth-child(odd) { border-left: 1px solid var(--line); padding-left: clamp(14px, 2vw, 28px); }
+    .tile:first-child { border-left: 0; padding-left: 0; }
+    .tile:nth-child(n + 3) { border-top: 0; }
+  }
+  .tile dd { margin: 0; }
+  .tile .eyebrow { order: 1; }
+  .tile-value {
+    order: 2;
+    font-family: var(--font-display);
+    font-size: clamp(2.3rem, 1.6rem + 2.6vw, 4rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .tile-note { order: 3; font-family: var(--font-mono); font-size: var(--t-micro); color: var(--muted); }
+</style>

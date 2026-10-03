@@ -1,0 +1,122 @@
+---
+// Cycles the colour theme: system -> light -> dark -> system.
+// "system" removes localStorage.theme and data-theme so the OS preference applies.
+// Base.astro applies a saved theme before first paint; this only handles changes.
+// Other code can cycle the theme with window.dispatchEvent(new Event("theme:cycle")).
+---
+
+<button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system. Switch to light">
+  <svg class="i i-system" viewBox="0 0 20 20" aria-hidden="true">
+    <circle cx="10" cy="10" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+    <path d="M10 3.75a6.25 6.25 0 0 1 0 12.5z" fill="currentColor"></path>
+  </svg>
+  <svg class="i i-light" viewBox="0 0 20 20" aria-hidden="true">
+    <circle cx="10" cy="10" r="3.4" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+    <path
+      d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M4.34 15.66l1.42-1.42M14.24 5.76l1.42-1.42"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"></path>
+  </svg>
+  <svg class="i i-dark" viewBox="0 0 20 20" aria-hidden="true">
+    <path
+      d="M16.2 12.4A6.5 6.5 0 0 1 7.6 3.8a6.5 6.5 0 1 0 8.6 8.6z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linejoin="round"></path>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: none;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .theme-toggle:hover {
+    color: var(--ink);
+    border-color: var(--line);
+    background: var(--card);
+  }
+  .i {
+    grid-area: 1 / 1;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+  }
+  .theme-toggle[data-mode="system"] .i-system,
+  .theme-toggle[data-mode="light"] .i-light,
+  .theme-toggle[data-mode="dark"] .i-dark,
+  .theme-toggle:not([data-mode]) .i-system {
+    opacity: 1;
+  }
+  /* the toggle needs JS; without it the OS preference simply applies */
+  :global(html:not(.js)) .theme-toggle {
+    display: none;
+  }
+</style>
+
+<script>
+  type Mode = "system" | "light" | "dark";
+  const order: Mode[] = ["system", "light", "dark"];
+  const label: Record<Mode, string> = { system: "system", light: "light", dark: "dark" };
+  const paper = { light: "#f3f3ef", dark: "#0f1012" };
+
+  const read = (): Mode => {
+    try {
+      const t = localStorage.getItem("theme");
+      return t === "light" || t === "dark" ? t : "system";
+    } catch {
+      return "system";
+    }
+  };
+
+  const syncThemeColor = (mode: Mode) => {
+    // keep the browser chrome colour in step with an explicit choice
+    document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
+      const forScheme = m.media.includes("dark") ? "dark" : "light";
+      m.content = paper[mode === "system" ? forScheme : mode];
+    });
+  };
+
+  const render = (mode: Mode) => {
+    const next = order[(order.indexOf(mode) + 1) % order.length];
+    document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((b) => {
+      b.dataset.mode = mode;
+      b.setAttribute("aria-label", `Theme: ${label[mode]}. Switch to ${label[next]}`);
+      b.title = `Theme: ${label[mode]}`;
+    });
+  };
+
+  let current: Mode = read();
+
+  const apply = (mode: Mode) => {
+    current = mode;
+    const root = document.documentElement;
+    try {
+      if (mode === "system") localStorage.removeItem("theme");
+      else localStorage.setItem("theme", mode);
+    } catch {}
+    if (mode === "system") delete root.dataset.theme;
+    else root.dataset.theme = mode;
+    syncThemeColor(mode);
+    render(mode);
+  };
+
+  const cycle = () => apply(order[(order.indexOf(current) + 1) % order.length]);
+
+  render(current);
+  syncThemeColor(current);
+  document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((b) => b.addEventListener("click", cycle));
+  window.addEventListener("theme:cycle", cycle);
+</script>

@@ -1,0 +1,154 @@
+---
+import { getCollection } from "astro:content";
+import WorkCard from "../WorkCard.astro";
+
+const work = (await getCollection("work")).sort((a, b) => a.data.order - b.data.order || b.data.year - a.data.year);
+
+// Featured cards sit two to a row on desktop, so keep their count even.
+const featured = work.filter((w) => w.data.featured).map((w) => w.id);
+if (featured.length % 2) featured.pop();
+const isLg = (id: string) => featured.includes(id);
+// With JS, the "All" view starts with the first few and a button reveals the rest.
+const PREVIEW = featured.length + 6;
+const PREVIEW_SM = Math.max(featured.length, 4); // one column on phones: keep it short
+
+const filters = [
+  { key: "all", label: "All" },
+  { key: "product", label: "Products" },
+  { key: "client", label: "Client work" },
+  { key: "app", label: "Apps" },
+  { key: "open-source", label: "Open source" },
+  { key: "experiment", label: "Experiments" },
+]
+  .map((f) => ({ ...f, count: f.key === "all" ? work.length : work.filter((w) => w.data.category === f.key).length }))
+  .filter((f) => f.count > 0);
+---
+
+<section id="work" class="section" aria-labelledby="work-title">
+  <div class="wrap">
+    <header class="section-head" data-reveal>
+      <p class="eyebrow">Selected work</p>
+      <h2 id="work-title">Shipped, in production, and still running.</h2>
+      <p class="lede">
+        Products I own, apps built for clients, and the open-source pieces that fell out of both. Each one links to a
+        write-up of what was hard about it.
+      </p>
+    </header>
+
+    {
+      work.length > 0 ? (
+        <>
+          <div class="filters" role="group" aria-label="Filter projects" data-reveal>
+            {filters.map((f, i) => (
+              <button type="button" class="filter" data-filter={f.key} aria-pressed={i === 0 ? "true" : "false"}>
+                {f.label}
+                <span class="filter-count">{f.count}</span>
+              </button>
+            ))}
+          </div>
+          <p class="sr-only" aria-live="polite" data-work-status />
+          <ul class="work-grid" id="work-grid" data-work-grid>
+            {work.map((entry, i) => (
+              <li
+                class:list={["work-item", { "is-featured": isLg(entry.id) }]}
+                data-cat={entry.data.category}
+                data-extra={i >= PREVIEW ? "" : undefined}
+                data-extra-sm={i >= PREVIEW_SM ? "" : undefined}
+                data-reveal
+              >
+                <WorkCard entry={entry} size={isLg(entry.id) ? "lg" : "md"} />
+              </li>
+            ))}
+          </ul>
+          {work.length > PREVIEW_SM && (
+            <div class="more-wrap">
+              <button type="button" class="btn more-btn" data-work-more aria-controls="work-grid">
+                Show all {work.length} projects
+              </button>
+            </div>
+          )}
+        </>
+      ) : (
+        <p class="empty">Project write-ups are being added. Meanwhile, everything public is on <a href="https://github.com/zamansheikh">GitHub</a>.</p>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .filters { display: none; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(24px, 3vw, 36px); }
+  :global(.js) .filters { display: flex; }
+  .filter {
+    display: inline-flex; align-items: center; gap: 8px;
+    min-height: 44px; padding: 0 16px;
+    border-radius: 999px; border: 1px solid var(--line-strong);
+    background: transparent; color: var(--ink-2);
+    font: 600 var(--t-small) / 1 var(--font-body);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .filter:hover { border-color: var(--ink); color: var(--ink); }
+  .filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .filter-count { font: 500 var(--t-micro) / 1 var(--font-mono); opacity: 0.65; }
+
+  .work-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: clamp(16px, 2vw, 24px);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 680px) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) {
+    .work-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-flow: dense; }
+    .work-item { grid-column: span 2; }
+    .work-item.is-featured { grid-column: span 3; }
+  }
+  .work-item[hidden] { display: none; }
+  /* collapsed only when JS is there to expand it again */
+  :global(.js) .work-grid:not(.is-expanded) .work-item[data-extra]:not(.is-match) { display: none; }
+  @media (max-width: 679px) {
+    :global(.js) .work-grid:not(.is-expanded) .work-item[data-extra-sm]:not(.is-match) { display: none; }
+  }
+  .more-wrap { display: none; justify-content: center; margin-top: clamp(24px, 3vw, 36px); }
+  :global(.js) .more-wrap { display: flex; }
+  .more-wrap[hidden] { display: none !important; }
+  .more-btn { min-height: 46px; cursor: pointer; }
+
+  .empty { color: var(--ink-2); }
+</style>
+
+<script>
+  const grid = document.querySelector<HTMLElement>("[data-work-grid]");
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const status = document.querySelector<HTMLElement>("[data-work-status]");
+  const more = document.querySelector<HTMLButtonElement>("[data-work-more]");
+  more?.addEventListener("click", () => {
+    grid?.classList.add("is-expanded");
+    more.parentElement!.hidden = true;
+    grid?.querySelectorAll<HTMLElement>(".work-item[data-extra-sm]").forEach((li) => li.classList.add("is-in"));
+    // move focus to the first newly shown project
+    const firstNew = window.matchMedia("(max-width: 679px)").matches ? "[data-extra-sm]" : "[data-extra]";
+    grid?.querySelector<HTMLAnchorElement>(`.work-item${firstNew} a`)?.focus();
+  });
+  if (grid && buttons.length) {
+    const items = [...grid.querySelectorAll<HTMLElement>(".work-item")];
+    buttons.forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.filter!;
+        buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+        let shown = 0;
+        items.forEach((li) => {
+          const show = key === "all" || li.dataset.cat === key;
+          li.hidden = !show;
+          // a category view shows every match; "All" goes back to the preview
+          li.classList.toggle("is-match", show && key !== "all");
+          if (show) {
+            shown++;
+            li.classList.add("is-in"); // never leave a revealed-later card invisible
+          }
+        });
+        if (more) more.parentElement!.hidden = key !== "all" || grid.classList.contains("is-expanded");
+        if (status) status.textContent = `Showing ${shown} project${shown === 1 ? "" : "s"}`;
+      }),
+    );
+  }
+</script>

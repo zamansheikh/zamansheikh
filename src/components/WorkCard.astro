@@ -1,0 +1,118 @@
+---
+// Project card. Used in the home grid and anywhere else a project is listed.
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+  entry: CollectionEntry<"work">;
+  size?: "lg" | "md";
+  headingLevel?: 2 | 3 | 4;
+}
+const { entry, size = "md", headingLevel = 3 } = Astro.props;
+const d = entry.data;
+const Heading = `h${headingLevel}` as "h3";
+
+const categoryLabel: Record<typeof d.category, string> = {
+  product: "Product",
+  client: "Client work",
+  "open-source": "Open source",
+  app: "App",
+  experiment: "Experiment",
+};
+const statusLabel: Record<typeof d.status, string> = {
+  live: "Live",
+  shipped: "Shipped",
+  "in-progress": "In progress",
+  archived: "Archived",
+};
+const initial = d.title.trim().charAt(0).toUpperCase();
+// pick ink or white for the initial so it reads on any brand colour
+const hex = d.color.replace("#", "");
+const full = hex.length === 3 ? [...hex].map((c) => c + c).join("") : hex.slice(0, 6);
+const [r, g, b] = [0, 2, 4].map((i) => parseInt(full.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
+const lum = Number.isFinite(r) ? 0.2126 * r! + 0.7152 * g! + 0.0722 * b! : 0;
+const initialInk = lum > 0.18 ? "#131416" : "#ffffff";
+---
+
+<article class:list={["work-card", `work-card--${size}`]}>
+  <div class="wc-media" style={!d.cover ? `--wc-color:${d.color};--wc-ink:${initialInk}` : undefined}>
+    {
+      d.cover ? (
+        <Image
+          src={d.cover}
+          alt={`${d.title} cover`}
+          class:list={{ "is-wide": d.cover.width / d.cover.height > 1.8 }}
+          widths={size === "lg" ? [480, 720, 1080, 1440] : [400, 600, 800]}
+          sizes={size === "lg" ? "(min-width: 1200px) 560px, (min-width: 760px) 50vw, 100vw" : "(min-width: 1200px) 370px, (min-width: 760px) 50vw, 100vw"}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <span class="wc-initial" aria-hidden="true">{initial}</span>
+      )
+    }
+  </div>
+  <div class="wc-body">
+    <div class="wc-meta">
+      <span>{categoryLabel[d.category]} · {d.year}</span>
+      <span class="chip wc-status">
+        {d.status === "live" && <span class="dot dot-live" aria-hidden="true" />}
+        {statusLabel[d.status]}
+      </span>
+    </div>
+    <Heading class="wc-title">
+      <a href={`/work/${entry.id}/`}>{d.title}</a>
+    </Heading>
+    <p class="wc-summary">{d.summary}</p>
+    {d.metric && <p class="wc-metric">{d.metric}</p>}
+  </div>
+</article>
+
+<style>
+  .work-card {
+    position: relative;
+    display: flex; flex-direction: column;
+    height: 100%;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .work-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .work-card:focus-within { border-color: var(--accent); }
+
+  .wc-media {
+    aspect-ratio: 16 / 10;
+    background: var(--wc-color, var(--paper-2));
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .wc-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+  .work-card:hover .wc-media img { transform: scale(1.02); }
+  /* banner-shaped covers keep their left edge, where the title usually sits */
+  .wc-media img.is-wide { object-position: left center; }
+  .wc-initial {
+    font-family: var(--font-display); font-weight: 600; letter-spacing: -0.04em;
+    font-size: clamp(4rem, 3rem + 4vw, 7rem); line-height: 1;
+    color: var(--wc-ink, #fff); opacity: 0.92;
+  }
+
+  .wc-body { display: flex; flex-direction: column; gap: 10px; padding: 18px 20px 22px; flex: 1; }
+  .work-card--lg .wc-body { padding: 22px 26px 28px; }
+  .wc-meta {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    font-family: var(--font-mono); font-size: var(--t-micro); color: var(--muted);
+  }
+  .wc-status .dot-live { width: 6px; height: 6px; box-shadow: 0 0 0 3px var(--accent-soft); }
+  .wc-title { font-size: var(--t-h3); letter-spacing: -0.02em; line-height: 1.15; }
+  .work-card--lg .wc-title { font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.85rem); }
+  .wc-title a { text-decoration: none; color: inherit; }
+  .wc-title a:focus-visible { outline: none; }
+  /* whole card is the link target */
+  .wc-title a::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+  .wc-title a:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wc-summary { color: var(--ink-2); font-size: var(--t-small); line-height: 1.55; }
+  .wc-metric { margin-top: auto; padding-top: 6px; font-family: var(--font-mono); font-size: var(--t-micro); color: var(--accent); }
+</style>

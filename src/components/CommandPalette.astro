@@ -1,0 +1,547 @@
+---
+// ⌘K / Ctrl+K command palette: jump to a home section, a case study, an
+// external profile, or run an action. Opened by the shortcut, by "/" and by
+// window.dispatchEvent(new Event("palette:open")). Needs JS; the site works without it.
+import { getCollection } from "astro:content";
+import { profile, links } from "../data/profile";
+
+type Item = { id: string; label: string; hint?: string; href?: string; action?: string; keywords?: string; external?: boolean };
+type Group = { id: string; label: string; items: Item[] };
+
+// same order as the home grid: order asc, then newest first
+const work = (await getCollection("work")).sort(
+  (a, b) => a.data.order - b.data.order || b.data.year - a.data.year || a.data.title.localeCompare(b.data.title),
+);
+const categoryLabel: Record<string, string> = {
+  product: "Product",
+  client: "Client work",
+  "open-source": "Open source",
+  app: "App",
+  experiment: "Experiment",
+};
+
+const groups: Group[] = [
+  {
+    id: "sections",
+    label: "Sections",
+    items: [
+      { id: "top", label: "Home", hint: "Top of page", keywords: "intro start about" },
+      { id: "problems", label: "Hard problems", hint: "Voxa RTC, bangla_pdf, Pagewright", keywords: "problems engineering depth" },
+      { id: "work", label: "Selected work", hint: "All projects", keywords: "projects portfolio case studies" },
+      { id: "open-source", label: "Open source", hint: "Packages & repos", keywords: "pub npm packages github" },
+      { id: "experience", label: "Experience", keywords: "jobs career cv resume roles" },
+      { id: "writing", label: "Writing", keywords: "blog posts articles" },
+      { id: "toolbox", label: "Toolbox", keywords: "skills stack tools tech" },
+      { id: "contact", label: "Contact", keywords: "email hire reach" },
+    ].map((s) => ({ ...s, id: `s-${s.id}`, href: `/#${s.id}` })),
+  },
+  {
+    id: "work",
+    label: "Work",
+    items: work.map((w) => ({
+      id: `w-${w.id}`,
+      label: w.data.title,
+      hint: categoryLabel[w.data.category],
+      href: `/work/${w.id}/`,
+      keywords: [w.data.summary, w.data.stack.join(" "), w.data.year].join(" "),
+    })),
+  },
+  {
+    id: "links",
+    label: "Links",
+    items: [
+      { id: "github", label: "GitHub", hint: "github.com/zamansheikh", href: links.github, keywords: "code repos" },
+      { id: "linkedin", label: "LinkedIn", hint: "in/zamansheikh", href: links.linkedin },
+      { id: "x", label: "X", hint: "@zamansheikh_404", href: links.x, keywords: "twitter" },
+      { id: "youtube", label: "YouTube", hint: "@zaman-sheikh", href: links.youtube, keywords: "videos" },
+      { id: "silifton", label: "Silifton", hint: "silifton.com", href: links.silifton, keywords: "studio company" },
+      { id: "cv", label: "CV", hint: "PDF", href: profile.cv, keywords: "resume curriculum vitae" },
+    ].map((l) => ({ ...l, id: `l-${l.id}`, external: l.href.startsWith("http") })),
+  },
+  {
+    id: "actions",
+    label: "Actions",
+    items: [
+      { id: "a-copy-email", label: "Copy email address", hint: profile.email, action: "copy-email", keywords: "mail contact" },
+      { id: "a-theme", label: "Toggle theme", hint: "System, light, dark", action: "theme", keywords: "dark light mode appearance" },
+    ],
+  },
+].filter((g) => g.items.length);
+---
+
+<dialog class="palette" data-palette aria-label="Search and commands" data-email={profile.email}>
+  <div class="field">
+    <svg viewBox="0 0 20 20" aria-hidden="true"
+      ><circle cx="8.75" cy="8.75" r="5.25" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path
+        d="m12.75 12.75 3.75 3.75"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"></path></svg
+    >
+    <input
+      type="text"
+      data-palette-input
+      role="combobox"
+      aria-expanded="true"
+      aria-controls="palette-list"
+      aria-autocomplete="list"
+      aria-label="Search sections, projects, links and actions"
+      placeholder="Search the site…"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      enterkeyhint="go"
+    />
+    <button class="esc" type="button" data-palette-close aria-label="Close search"><kbd>esc</kbd></button>
+  </div>
+
+  <div class="list" id="palette-list" role="listbox" aria-label="Results" data-palette-list>
+    {
+      groups.map((g) => (
+        <div class="group" role="group" aria-labelledby={`pg-${g.id}`} data-group>
+          <div class="group-label" id={`pg-${g.id}`} role="presentation">
+            {g.label}
+          </div>
+          {g.items.map((it) =>
+            it.href ? (
+              <a
+                class="opt"
+                id={`po-${it.id}`}
+                role="option"
+                aria-selected="false"
+                tabindex="-1"
+                href={it.href}
+                data-opt
+                data-kind={g.id}
+                data-text={`${it.label} ${it.hint ?? ""} ${it.keywords ?? ""}`.toLowerCase()}
+                data-label={it.label.toLowerCase()}
+                {...(it.external ? { target: "_blank", rel: "noopener" } : {})}
+              >
+                <span class="opt-label">{it.label}</span>
+                {it.hint && <span class="opt-hint">{it.hint}</span>}
+                <span class="opt-kind" aria-hidden="true">
+                  {it.external ? "↗" : "↵"}
+                </span>
+              </a>
+            ) : (
+              <div
+                class="opt"
+                id={`po-${it.id}`}
+                role="option"
+                aria-selected="false"
+                data-opt
+                data-kind={g.id}
+                data-action={it.action}
+                data-text={`${it.label} ${it.hint ?? ""} ${it.keywords ?? ""}`.toLowerCase()}
+                data-label={it.label.toLowerCase()}
+              >
+                <span class="opt-label">{it.label}</span>
+                {it.hint && <span class="opt-hint">{it.hint}</span>}
+                <span class="opt-kind" aria-hidden="true">↵</span>
+              </div>
+            ),
+          )}
+        </div>
+      ))
+    }
+    <p class="empty" data-palette-empty hidden>No results for “<span data-palette-q></span>”</p>
+  </div>
+
+  <div class="foot" aria-hidden="true">
+    <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+    <span><kbd>↵</kbd> open</span>
+    <span><kbd>esc</kbd> close</span>
+  </div>
+  <p class="sr-only" role="status" aria-live="polite" data-palette-status></p>
+</dialog>
+
+<style>
+  .palette {
+    width: min(640px, calc(100% - 32px));
+    max-width: none;
+    max-height: min(560px, calc(100dvh - 32px));
+    margin: min(14vh, 120px) auto auto;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--ink);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 32px 80px -24px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+  .palette[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .palette::backdrop {
+    background: rgba(15, 16, 18, 0.42);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .palette[open] {
+      animation: pal-in 0.22s var(--ease);
+    }
+    .palette[open]::backdrop {
+      animation: fade-in 0.22s ease;
+    }
+  }
+  @keyframes pal-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.985);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px 0 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .field svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    color: var(--muted);
+  }
+  .field input {
+    flex: 1;
+    min-width: 0;
+    height: 60px;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: var(--ink);
+    font: 400 1.0625rem / 1 var(--font-body);
+  }
+  .field input::placeholder {
+    color: var(--muted);
+  }
+  .esc {
+    display: grid;
+    place-items: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  kbd {
+    display: inline-grid;
+    place-items: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border: 1px solid var(--line);
+    border-bottom-width: 2px;
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink-2);
+    font: 500 0.6875rem / 1 var(--font-mono);
+  }
+
+  .list {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 6px 8px 10px;
+    scroll-padding-block: 36px 10px;
+  }
+  .group[hidden] {
+    display: none;
+  }
+  .group-label {
+    padding: 14px 10px 6px;
+    font: 500 0.6875rem / 1 var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .opt {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+  }
+  .opt[hidden] {
+    display: none;
+  }
+  .opt-label {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+  .opt-hint {
+    flex: 1;
+    min-width: 0;
+    color: var(--muted);
+    font-size: var(--t-small);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .opt-kind {
+    margin-left: auto;
+    flex: none;
+    font: 500 0.8125rem / 1 var(--font-mono);
+    color: var(--muted);
+    opacity: 0;
+  }
+  .opt[aria-selected="true"] {
+    background: var(--paper-2);
+    box-shadow: inset 2px 0 0 var(--accent);
+  }
+  .opt[aria-selected="true"] .opt-kind {
+    opacity: 1;
+  }
+  .opt[data-done] .opt-hint {
+    color: var(--accent);
+  }
+
+  .empty {
+    padding: 36px 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: var(--t-small);
+  }
+
+  .foot {
+    display: flex;
+    gap: 18px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+    font: 400 var(--t-micro) / 1 var(--font-body);
+    color: var(--muted);
+  }
+  .foot span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .foot kbd {
+    min-width: 20px;
+    height: 20px;
+    background: var(--card);
+  }
+
+  @media (max-width: 560px) {
+    .palette {
+      margin-top: 12px;
+      max-height: calc(100dvh - 24px);
+    }
+    .foot {
+      display: none;
+    }
+    .opt-hint {
+      display: none;
+    }
+    .opt[data-kind="work"] .opt-hint {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("[data-palette]")!;
+  const input = dialog.querySelector<HTMLInputElement>("[data-palette-input]")!;
+  const list = dialog.querySelector<HTMLElement>("[data-palette-list]")!;
+  const empty = dialog.querySelector<HTMLElement>("[data-palette-empty]")!;
+  const emptyQ = dialog.querySelector<HTMLElement>("[data-palette-q]")!;
+  const status = dialog.querySelector<HTMLElement>("[data-palette-status]")!;
+  const groups = [...list.querySelectorAll<HTMLElement>("[data-group]")];
+  const options = [...list.querySelectorAll<HTMLElement>("[data-opt]")];
+  const original = new Map(groups.map((g) => [g, [...g.querySelectorAll<HTMLElement>("[data-opt]")]]));
+  let active: HTMLElement | null = null;
+  let opener: Element | null = null;
+
+  // Score: prefix of label > word start > substring > in-order subsequence; 0 = no match
+  function score(el: HTMLElement, q: string): number {
+    if (!q) return 1;
+    const label = el.dataset.label ?? "";
+    const text = el.dataset.text ?? "";
+    if (label.startsWith(q)) return 100 - label.length / 100;
+    const li = label.indexOf(q);
+    if (li > 0) return (/\s/.test(label[li - 1]) ? 80 : 60) - li / 100;
+    const ti = text.indexOf(q);
+    if (ti >= 0) return 40 - ti / 1000;
+    // fuzzy: every query char in order within the label, tighter spans score higher
+    let pos = -1;
+    let first = -1;
+    for (const ch of q.replace(/\s+/g, "")) {
+      pos = label.indexOf(ch, pos + 1);
+      if (pos < 0) return 0;
+      if (first < 0) first = pos;
+    }
+    const span = pos - first + 1;
+    return span <= q.length * 3 ? 20 - span / 100 : 0;
+  }
+
+  const visible = () => options.filter((o) => !o.hidden && !o.closest<HTMLElement>("[data-group]")!.hidden);
+
+  function setActive(el: HTMLElement | null, scroll = true) {
+    active?.setAttribute("aria-selected", "false");
+    active = el;
+    if (el) {
+      el.setAttribute("aria-selected", "true");
+      input.setAttribute("aria-activedescendant", el.id);
+      if (scroll) el.scrollIntoView({ block: "nearest" });
+    } else input.removeAttribute("aria-activedescendant");
+  }
+
+  function filter() {
+    const q = input.value.trim().toLowerCase();
+    let total = 0;
+    for (const g of groups) {
+      const items = original.get(g)!;
+      const scored = items.map((el, i) => ({ el, i, s: score(el, q) }));
+      if (q) scored.sort((a, b) => b.s - a.s || a.i - b.i);
+      scored.forEach(({ el, s }) => {
+        el.hidden = s === 0;
+        g.appendChild(el);
+      });
+      const shown = scored.filter((x) => x.s > 0).length;
+      g.hidden = shown === 0;
+      total += shown;
+    }
+    empty.hidden = total > 0;
+    emptyQ.textContent = input.value.trim();
+    status.textContent = q ? (total ? `${total} result${total === 1 ? "" : "s"}` : "No results") : "";
+    setActive(visible()[0] ?? null, false);
+    list.scrollTop = 0;
+  }
+
+  function open() {
+    if (dialog.open) return;
+    opener = document.activeElement;
+    input.value = "";
+    filter();
+    dialog.showModal();
+    input.focus();
+  }
+  function close() {
+    if (dialog.open) dialog.close();
+  }
+  dialog.addEventListener("close", () => {
+    options.forEach((o) => o.removeAttribute("data-done"));
+    if (opener instanceof HTMLElement && opener.isConnected) opener.focus({ preventScroll: true });
+  });
+
+  function move(delta: number) {
+    const v = visible();
+    if (!v.length) return;
+    const i = active ? v.indexOf(active) : -1;
+    setActive(v[(i + delta + v.length) % v.length]);
+  }
+
+  async function run(el: HTMLElement, e?: MouseEvent | KeyboardEvent) {
+    const action = el.dataset.action;
+    if (action === "copy-email") {
+      const email = dialog.dataset.email ?? "";
+      const hint = el.querySelector<HTMLElement>(".opt-hint");
+      try {
+        await navigator.clipboard.writeText(email);
+        if (hint) hint.textContent = "Copied to clipboard";
+        status.textContent = "Email address copied";
+      } catch {
+        if (hint) hint.textContent = email;
+        status.textContent = `Copy failed. The address is ${email}`;
+        return;
+      }
+      el.setAttribute("data-done", "");
+      setTimeout(() => {
+        close();
+        if (hint) hint.textContent = email;
+      }, 700);
+      return;
+    }
+    if (action === "theme") {
+      close();
+      window.dispatchEvent(new Event("theme:cycle"));
+      return;
+    }
+    if (el instanceof HTMLAnchorElement) {
+      // modifier clicks keep their native behaviour (new tab etc.)
+      const newTab = !!e && (e.metaKey || e.ctrlKey || e.shiftKey);
+      close();
+      if (e instanceof MouseEvent) return; // let the browser follow the link
+      if (newTab || el.target === "_blank") window.open(el.href, "_blank", "noopener");
+      else el.click();
+    }
+  }
+
+  input.addEventListener("input", filter);
+  input.addEventListener("keydown", (e) => {
+    if (e.isComposing) return;
+    if (e.key === "ArrowDown" || (e.ctrlKey && e.key === "n")) {
+      e.preventDefault();
+      move(1);
+    } else if (e.key === "ArrowUp" || (e.ctrlKey && e.key === "p")) {
+      e.preventDefault();
+      move(-1);
+    } else if (e.key === "Home" && e.ctrlKey) {
+      e.preventDefault();
+      setActive(visible()[0] ?? null);
+    } else if (e.key === "End" && e.ctrlKey) {
+      e.preventDefault();
+      setActive(visible().at(-1) ?? null);
+    } else if (e.key === "Enter" && active) {
+      e.preventDefault();
+      run(active, e);
+    }
+  });
+
+  list.addEventListener("click", (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>("[data-opt]");
+    if (!el) return;
+    if (!(el instanceof HTMLAnchorElement)) e.preventDefault();
+    run(el, e);
+  });
+  list.addEventListener("pointermove", (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>("[data-opt]");
+    if (el && el !== active) setActive(el, false);
+  });
+  // keep focus in the input when clicking options
+  list.addEventListener("mousedown", (e) => {
+    if ((e.target as HTMLElement).closest("[data-opt]")) e.preventDefault();
+  });
+
+  dialog.querySelector("[data-palette-close]")!.addEventListener("click", close);
+  // click on the backdrop closes
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) close();
+  });
+
+  window.addEventListener("palette:open", open);
+  document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && !e.altKey && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      if (dialog.open) close();
+      else open();
+      return;
+    }
+    if (e.key === "/" && !dialog.open && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      const t = e.target as HTMLElement;
+      if (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName)) return;
+      e.preventDefault();
+      open();
+    }
+  });
+</script>
