@@ -72,8 +72,8 @@ More of what I've shipped with Silifton: **[silifton.com/portfolio](https://sili
 <p align="center">
   <a href="https://x.com/zamansheikh_404"><img src="https://img.shields.io/badge/X-0b0e17?style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
   <a href="https://fb.com/zamansheikh.404"><img src="https://img.shields.io/badge/Facebook-0b0e17?style=for-the-badge&logo=facebook&logoColor=1877f2" alt="Facebook"></a>
-  <a href="https://instagram.com/zamansheikh.cse"><img src="https://img.shields.io/badge/Instagram-0b0e17?style=for-the-badge&logo=instagram&logoColor=e4405f" alt="Instagram"></a>
-  <a href="https://www.youtube.com/c/ZamanSheikhOfficial"><img src="https://img.shields.io/badge/YouTube-0b0e17?style=for-the-badge&logo=youtube&logoColor=ff0000" alt="YouTube"></a>
+  <a href="https://www.instagram.com/zamansheikh_error"><img src="https://img.shields.io/badge/Instagram-0b0e17?style=for-the-badge&logo=instagram&logoColor=e4405f" alt="Instagram"></a>
+  <a href="https://www.youtube.com/@zaman-sheikh"><img src="https://img.shields.io/badge/YouTube-0b0e17?style=for-the-badge&logo=youtube&logoColor=ff0000" alt="YouTube"></a>
   <a href="https://discord.gg/Wj3keGKWus"><img src="https://img.shields.io/badge/Discord-0b0e17?style=for-the-badge&logo=discord&logoColor=5865f2" alt="Discord"></a>
 </p>
 
