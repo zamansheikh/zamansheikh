@@ -6,7 +6,7 @@
   <a href="https://zamansheikh.com"><img src="https://img.shields.io/badge/zamansheikh.com-0b0e17?style=for-the-badge&logo=googlechrome&logoColor=4f8bff" alt="Website"></a>
   <a href="https://silifton.com"><img src="https://img.shields.io/badge/Silifton-0b0e17?style=for-the-badge&logo=github&logoColor=4f8bff" alt="Silifton"></a>
   <a href="https://linkedin.com/in/zamansheikh"><img src="https://img.shields.io/badge/LinkedIn-0b0e17?style=for-the-badge&logo=linkedin&logoColor=4f8bff" alt="LinkedIn"></a>
-  <a href="mailto:hello@silifton.com"><img src="https://img.shields.io/badge/Email-0b0e17?style=for-the-badge&logo=gmail&logoColor=4f8bff" alt="Email"></a>
+  <a href="mailto:shamsuzzaman15-4031@diu.edu.bd"><img src="https://img.shields.io/badge/Email-0b0e17?style=for-the-badge&logo=gmail&logoColor=4f8bff" alt="Email"></a>
   <a href="https://zamansheikh.com/zaman_cv.pdf"><img src="https://img.shields.io/badge/CV-0b0e17?style=for-the-badge&logo=readdotcv&logoColor=4f8bff" alt="CV"></a>
 </p>
 
@@ -18,7 +18,7 @@ I'm Zaman, founder of **[Silifton](https://silifton.com)**, an engineering studi
 - **Focus:** Flutter, real-time video (WebRTC, LiveKit), NestJS and Next.js backends, Linux servers
 - **Teaching:** free Flutter sessions in the [Silifton Discord community](https://discord.gg/Wj3keGKWus)
 - **Ask me about:** Flutter, Dart, real-time apps, PDF and text shaping, Linux
-- **Reach me:** [hello@silifton.com](mailto:hello@silifton.com) · [CV](https://zamansheikh.com/zaman_cv.pdf)
+- **Reach me:** [shamsuzzaman15-4031@diu.edu.bd](mailto:shamsuzzaman15-4031@diu.edu.bd) · [CV](https://zamansheikh.com/zaman_cv.pdf)
 
 ## Featured work
 
