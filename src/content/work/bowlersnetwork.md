@@ -3,7 +3,7 @@ title: "BowlersNetwork"
 summary: "A home for bowlers on web and mobile: score tracking, player profiles, leaderboards and a community feed, for BowlersNetwork Inc."
 category: client
 year: 2025
-role: "Flutter & Next.js developer"
+role: "Software engineer"
 stack: ["Flutter", "BLoC", "GoRouter", "GetIt", "Next.js", "TypeScript", "Tailwind CSS", "Firebase"]
 status: live
 order: 22

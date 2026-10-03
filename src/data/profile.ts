@@ -52,7 +52,7 @@ export const experience: Role[] = [
   {
     org: "BowlersNetwork Inc.",
     url: "https://www.bowlersnetwork.com",
-    title: "Flutter & Next.js Developer",
+    title: "Software Engineer",
     period: "May 2025 – 2026",
     place: "Remote · Bismarck, ND, USA",
     points: [
